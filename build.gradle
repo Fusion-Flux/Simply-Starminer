@@ -16,6 +16,22 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+		content {
+			includeGroup "maven.modrinth"
+		}
+	}
+	maven {
+		url "https://maven.shedaniel.me/"
+	}
+
+	maven {
+		url "https://maven.terraformersmc.com/"
+	}
+	maven { url 'https://jitpack.io' }
+
 }
 
 dependencies {
@@ -26,6 +42,15 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+
+	modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+
+	modImplementation ('com.github.Fusion-Flux:GravityChanger:0.3.2')
+	//include ('com.github.qouteall.GravityChanger:gravitychanger-0.3.1-1.18.2.jar')
 }
 
 processResources {

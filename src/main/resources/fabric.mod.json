@@ -19,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.fusionflux.starminer.StarMinerRefabricated"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "starminer.mixins.json"
   ],
 
   "depends": {
