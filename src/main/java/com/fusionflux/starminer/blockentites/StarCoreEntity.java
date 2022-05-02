@@ -35,7 +35,7 @@ public class StarCoreEntity extends BlockEntity {
 
         for (Entity entity : list) {
             listb.remove(entity);
-            if(entity instanceof PlayerEntity) {
+           // if(entity instanceof PlayerEntity) {
 
                 if (((EntityAttachments) entity).getGravityTimer() == 0) {
                 double offsetX = Math.abs(innerBox.getCenter().getX() - entity.getPos().getX());
@@ -43,49 +43,49 @@ public class StarCoreEntity extends BlockEntity {
                 double offsetZ = Math.abs(innerBox.getCenter().getZ() - entity.getPos().getZ());
                 if (offsetY > offsetX && offsetY > offsetZ) {
                     if (entity.getPos().getY() > pos.getY()) {
-                        if (GravityChangerAPI.getGravityDirection((PlayerEntity) entity) != Direction.DOWN)
+                        if (GravityChangerAPI.getGravityDirection( entity) != Direction.DOWN)
                             ((EntityAttachments) entity).setGravityTimer(10);
-                        GravityChangerAPI.setGravityDirection((PlayerEntity) entity, Direction.DOWN);
+                        GravityChangerAPI.setGravityDirection( entity, Direction.DOWN);
                     }
                     if (entity.getPos().getY() < pos.getY()) {
-                        if (GravityChangerAPI.getGravityDirection((PlayerEntity) entity) != Direction.UP)
+                        if (GravityChangerAPI.getGravityDirection( entity) != Direction.UP)
                             ((EntityAttachments) entity).setGravityTimer(10);
-                        GravityChangerAPI.setGravityDirection((PlayerEntity) entity, Direction.UP);
+                        GravityChangerAPI.setGravityDirection( entity, Direction.UP);
                     }
                 }
                 if (offsetZ > offsetY && offsetZ > offsetX) {
                     if (entity.getPos().getZ() > pos.getZ()) {
-                        if (GravityChangerAPI.getGravityDirection((PlayerEntity) entity) != Direction.NORTH)
+                        if (GravityChangerAPI.getGravityDirection( entity) != Direction.NORTH)
                             ((EntityAttachments) entity).setGravityTimer(10);
-                        GravityChangerAPI.setGravityDirection((PlayerEntity) entity, Direction.NORTH);
+                        GravityChangerAPI.setGravityDirection( entity, Direction.NORTH);
                     }
                     if (entity.getPos().getZ() < pos.getZ()) {
-                        if (GravityChangerAPI.getGravityDirection((PlayerEntity) entity) != Direction.SOUTH)
+                        if (GravityChangerAPI.getGravityDirection( entity) != Direction.SOUTH)
                             ((EntityAttachments) entity).setGravityTimer(10);
-                        GravityChangerAPI.setGravityDirection((PlayerEntity) entity, Direction.SOUTH);
+                        GravityChangerAPI.setGravityDirection( entity, Direction.SOUTH);
                     }
                 }
 
                 if (offsetX > offsetY && offsetX > offsetZ) {
                     if (entity.getPos().getX() > pos.getX()) {
-                        if (GravityChangerAPI.getGravityDirection((PlayerEntity) entity) != Direction.WEST)
+                        if (GravityChangerAPI.getGravityDirection( entity) != Direction.WEST)
                             ((EntityAttachments) entity).setGravityTimer(10);
-                        GravityChangerAPI.setGravityDirection((PlayerEntity) entity, Direction.WEST);
+                        GravityChangerAPI.setGravityDirection( entity, Direction.WEST);
                     }
                     if (entity.getPos().getX() < pos.getX()) {
-                        if (GravityChangerAPI.getGravityDirection((PlayerEntity) entity) != Direction.EAST)
+                        if (GravityChangerAPI.getGravityDirection( entity) != Direction.EAST)
                             ((EntityAttachments) entity).setGravityTimer(10);
-                        GravityChangerAPI.setGravityDirection((PlayerEntity) entity, Direction.EAST);
+                        GravityChangerAPI.setGravityDirection( entity, Direction.EAST);
                     }
                 }
             }
-            }
+            //}
 
         }
 
         for (Entity entity : listb) {
             if(entity instanceof PlayerEntity) {
-                GravityChangerAPI.setGravityDirection((PlayerEntity) entity, Direction.DOWN);
+                GravityChangerAPI.setGravityDirection( entity, Direction.DOWN);
             }
         }
 
