@@ -28,6 +28,15 @@ repositories {
 	}
 
 	maven {
+		name = "Ladysnake Mods"
+		url = 'https://ladysnake.jfrog.io/artifactory/mods'
+		content {
+			includeGroup 'io.github.ladysnake'
+			includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+		}
+	}
+
+	maven {
 		url "https://maven.terraformersmc.com/"
 	}
 	maven { url 'https://jitpack.io' }
@@ -49,8 +58,14 @@ dependencies {
 
 	modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
 
-	modImplementation ('com.github.Fusion-Flux:GravityChanger:0.3.2')
-	//include ('com.github.qouteall.GravityChanger:gravitychanger-0.3.1-1.18.2.jar')
+	// Replace modImplementation with modApi if you expose components in your own API
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:4.0.0"
+	// Includes Cardinal Components API as a Jar-in-Jar dependency (optional but recommended)
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:4.0.0"
+
+	modImplementation ('com.github.Fusion-Flux:GravityChanger:v0.6.3')
+
+	include ('com.github.Fusion-Flux:GravityChanger:v0.6.3')
 }
 
 processResources {

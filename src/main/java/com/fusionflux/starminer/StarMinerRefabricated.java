@@ -31,8 +31,8 @@ public class StarMinerRefabricated implements ModInitializer {
 		// Proceed with mild caution.
 
 		STAR_CORE_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(StarMinerRefabricated.MOD_ID, "redstone_randomizer_entity"), FabricBlockEntityTypeBuilder.create(StarCoreEntity::new, STAR_CORE).build(null));
-		Registry.register(Registry.BLOCK, new Identifier(StarMinerRefabricated.MOD_ID, "redstone_randomizer"), STAR_CORE);
-		Registry.register(Registry.ITEM, new Identifier(StarMinerRefabricated.MOD_ID, "redstone_randomizer"), new BlockItem(STAR_CORE, new Item.Settings().group(ItemGroup.REDSTONE)));
+		Registry.register(Registry.BLOCK, new Identifier(StarMinerRefabricated.MOD_ID, "star_core"), STAR_CORE);
+		Registry.register(Registry.ITEM, new Identifier(StarMinerRefabricated.MOD_ID, "star_core"), new BlockItem(STAR_CORE, new Item.Settings().group(ItemGroup.REDSTONE)));
 
 		LOGGER.info("Hello Fabric world!");
 	}
