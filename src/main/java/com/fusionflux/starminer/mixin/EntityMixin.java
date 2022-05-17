@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public class EntityMixin implements EntityAttachments {
-
+//
 	int gravityTimer = 0;
 	int remaningGravityTimer = 0;
 	boolean swapgrav = false;
