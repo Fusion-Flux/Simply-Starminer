@@ -1,0 +1,65 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "simply_starminer:block/gravity_plate",
+        "uvlock": true,
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "simply_starminer:block/gravity_plate",
+        "uvlock": true,
+        "x": 270,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "simply_starminer:block/gravity_plate",
+        "uvlock": true,
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "simply_starminer:block/gravity_plate",
+        "uvlock": true,
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "simply_starminer:block/gravity_plate",
+        "uvlock": true,
+        "x": 180
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "simply_starminer:block/gravity_plate",
+        "uvlock": true
+      }
+    }
+  ]
+}

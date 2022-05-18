@@ -31,7 +31,7 @@ public class StarCoreEntity extends BlockEntity {
         super(StarMinerRefabricated.STAR_CORE_ENTITY, pos, state);
     }
 
-    int radius = 0;
+    int radius = 20;
 
     public static void tick(World world, BlockPos pos, BlockState state, StarCoreEntity blockEntity) {
         Box innerBox = (new Box(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).expand(blockEntity.radius);
@@ -40,7 +40,11 @@ public class StarCoreEntity extends BlockEntity {
 
         for (Entity entity : list) {
             if (entity != null) {
-                boolean dontrotate = entity.hasVehicle();
+                boolean dontrotate = entity.hasVehicle() || ((EntityAttachments) entity).getPlateGravityTimer() != 0;
+
+                if(((EntityAttachments) entity).getPlateGravityTimer() != 0){
+                    ((EntityAttachments) entity).setRemainingGravity(2);
+                }
 
                 if (entity instanceof PlayerEntity)
                     if (((PlayerEntity) entity).getAbilities().flying)
