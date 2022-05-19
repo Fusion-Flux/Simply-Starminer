@@ -21,68 +21,42 @@ public abstract class EntityMixin implements EntityAttachments {
 @Unique
 private Vec3d lastSSMVel = Vec3d.ZERO;
 
-	int gravityTimer = 0;
-	int plateGravityTimer = 0;
-	int remaningGravityTimer = 0;
-	boolean swapgrav = false;
+	int gravityPlateTimer = 0;
+	int gravityStarTimer = 0;
 
 	@Inject(method = "tick", at = @At("HEAD"))
 	public void tick(CallbackInfo ci) {
-		//if(gravityTimer>0)
-		//gravityTimer --;
 
-
-
-		if(gravityTimer>0) {
-			gravityTimer--;
-			swapgrav = false;
+		if(gravityPlateTimer>0) {
+			gravityPlateTimer--;
 		}
 
-		if(remaningGravityTimer>0) {
-			remaningGravityTimer--;
-			swapgrav = false;
+		if(gravityStarTimer>0) {
+			gravityStarTimer--;
 		}
 
-		if(plateGravityTimer>0) {
-			plateGravityTimer--;
-			swapgrav = false;
-		}
 
-		if(!swapgrav && remaningGravityTimer==0 && plateGravityTimer==0){
-			GravityChangerAPI.setGravityDirection( (Entity) (Object)this, GravityChangerAPI.getDefaultGravityDirection((Entity) (Object)this));
-			swapgrav =true;
-		}
 		this.lastSSMVel = this.getVelocity();
 	}
 
 	@Override
-	public int getGravityTimer() {
-		return this.gravityTimer;
-	}
-
-	@Override
-	public void setGravityTimer(int gravityTimer) {
-		this.gravityTimer = gravityTimer;
-	}
-
-	@Override
 	public int getPlateGravityTimer() {
-		return this.plateGravityTimer;
+		return this.gravityPlateTimer;
 	}
 
 	@Override
 	public void setPlateGravityTimer(int gravityTimer) {
-		this.plateGravityTimer = gravityTimer;
+		this.gravityPlateTimer = gravityTimer;
 	}
 
 	@Override
-	public int getRemainingGravity() {
-		return this.remaningGravityTimer;
+	public int getStarGravityTimer() {
+		return this.gravityStarTimer;
 	}
 
 	@Override
-	public void setRemainingGravity(int gravityTimer) {
-		this.remaningGravityTimer = gravityTimer;
+	public void setStarGravityTimer(int gravityTimer) {
+		this.gravityStarTimer = gravityTimer;
 	}
 
 	@Override

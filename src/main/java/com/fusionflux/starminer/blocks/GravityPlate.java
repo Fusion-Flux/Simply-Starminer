@@ -3,6 +3,7 @@ package com.fusionflux.starminer.blocks;
 import com.fusionflux.starminer.util.EntityAttachments;
 import com.google.common.collect.ImmutableMap;
 import me.andrew.gravitychanger.api.GravityChangerAPI;
+import me.andrew.gravitychanger.util.Gravity;
 import me.andrew.gravitychanger.util.RotationUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -302,48 +303,39 @@ public class GravityPlate extends Block {
         Vec3d preChange;
 
             direction = RotationUtil.vecWorldToPlayer(direction, GravityChangerAPI.getGravityDirection( entity));
-
-            if (((EntityAttachments) entity).getGravityTimer() == 0) {
+        GravityChangerAPI.addGravity( entity, new Gravity(GravityChangerAPI.getGravityDirection(entity),10,30,"gravity_plate"));
+        if (((EntityAttachments) entity).getPlateGravityTimer() == 0) {
                 if (entity.verticalCollision) {
-                    if (direction.y == -1 || Math.abs(direction.y) == 2  && vec3dLast.getY() < 0) {
-                        ((EntityAttachments) entity).setPlateGravityTimer(30);
-                    }
                     if (direction.y == 1 || Math.abs(direction.y) == 2 && vec3dLast.getY() > 0) {
-                        ((EntityAttachments) entity).setPlateGravityTimer(30);
-                        ((EntityAttachments) entity).setGravityTimer(10);
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
                         preChange = RotationUtil.vecPlayerToWorld(new Vec3d(0, 1, 0), GravityChangerAPI.getGravityDirection( entity));
-                        GravityChangerAPI.setGravityDirection( entity, Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z));
+                        GravityChangerAPI.addGravity( entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z),10,30,"gravity_plate"));
                     }
                 }
 
                 if (entity.horizontalCollision) {
                     if (direction.z == -1 || Math.abs(direction.z) == 2 && vec3dLast.getZ() < 0) {
-                        //NORTH
-                        ((EntityAttachments) entity).setPlateGravityTimer(30);
-                        ((EntityAttachments) entity).setGravityTimer(10);
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
                         preChange = RotationUtil.vecPlayerToWorld(new Vec3d(0, 0, -1), GravityChangerAPI.getGravityDirection( entity));
-                        GravityChangerAPI.setGravityDirection( entity, Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z));
+                        GravityChangerAPI.addGravity( entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z),10,30,"gravity_plate"));
                     }
 
                     if (direction.z == 1 || Math.abs(direction.z) == 2 && vec3dLast.getZ() > 0) {
-                        ((EntityAttachments) entity).setPlateGravityTimer(30);
-                        ((EntityAttachments) entity).setGravityTimer(10);
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
                         preChange = RotationUtil.vecPlayerToWorld(new Vec3d(0, 0, 1), GravityChangerAPI.getGravityDirection( entity));
-                        GravityChangerAPI.setGravityDirection( entity, Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z));
+                        GravityChangerAPI.addGravity( entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z),10,30,"gravity_plate"));
                     }
 
                     if (direction.x == 1 || Math.abs(direction.x) == 2 && vec3dLast.getX() > 0) {
-                        ((EntityAttachments) entity).setPlateGravityTimer(30);
-                        ((EntityAttachments) entity).setGravityTimer(10);
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
                         preChange = RotationUtil.vecPlayerToWorld(new Vec3d(1, 0, 0), GravityChangerAPI.getGravityDirection( entity));
-                        GravityChangerAPI.setGravityDirection( entity, Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z));
+                        GravityChangerAPI.addGravity( entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z),10,30,"gravity_plate"));
                     }
 
                     if (direction.x == -1 || Math.abs(direction.x) == 2 && vec3dLast.getX() < 0) {
-                        ((EntityAttachments) entity).setPlateGravityTimer(30);
-                        ((EntityAttachments) entity).setGravityTimer(10);
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
                         preChange = RotationUtil.vecPlayerToWorld(new Vec3d(-1, 0, 0), GravityChangerAPI.getGravityDirection( entity));
-                        GravityChangerAPI.setGravityDirection( entity, Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z));
+                        GravityChangerAPI.addGravity( entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z),10,30,"gravity_plate"));
                     }
                 }
             }

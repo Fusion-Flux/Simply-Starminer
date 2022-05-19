@@ -63,9 +63,9 @@ dependencies {
 	// Includes Cardinal Components API as a Jar-in-Jar dependency (optional but recommended)
 	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:4.0.0"
 
-	modImplementation ('com.github.Fusion-Flux:GravityChanger:v0.6.3')
+	modImplementation ('com.github.Fusion-Flux:GravityChanger:v0.7.0')
 
-	include ('com.github.Fusion-Flux:GravityChanger:v0.6.3')
+	include ('com.github.Fusion-Flux:GravityChanger:v0.7.0')
 }
 
 processResources {

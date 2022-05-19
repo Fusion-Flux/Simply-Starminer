@@ -3,6 +3,7 @@ package com.fusionflux.starminer.blockentites;
 import com.fusionflux.starminer.StarMinerRefabricated;
 import com.fusionflux.starminer.util.EntityAttachments;
 import me.andrew.gravitychanger.api.GravityChangerAPI;
+import me.andrew.gravitychanger.util.Gravity;
 import me.andrew.gravitychanger.util.RotationUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -40,60 +41,65 @@ public class StarCoreEntity extends BlockEntity {
 
         for (Entity entity : list) {
             if (entity != null) {
-                boolean dontrotate = entity.hasVehicle() || ((EntityAttachments) entity).getPlateGravityTimer() != 0;
+                boolean dontrotate = entity.hasVehicle();
 
-                if(((EntityAttachments) entity).getPlateGravityTimer() != 0){
-                    ((EntityAttachments) entity).setRemainingGravity(2);
-                }
+                //if(((EntityAttachments) entity).getPlateGravityTimer() != 0){
+                //    ((EntityAttachments) entity).setRemainingGravity(2);
+                //}
 
                 if (entity instanceof PlayerEntity)
                     if (((PlayerEntity) entity).getAbilities().flying)
                         dontrotate = true;
                 if (!dontrotate) {
                     //listb.remove(entity);
-                    ((EntityAttachments) entity).setRemainingGravity(2);
-                    if (((EntityAttachments) entity).getGravityTimer() == 0) {
+                    GravityChangerAPI.addGravity( entity, new Gravity(GravityChangerAPI.getGravityDirection(entity),5,2,"star_core"));
                         double offsetX = Math.abs(innerBox.getCenter().getX() - entity.getPos().getX());
                         double offsetY = Math.abs(innerBox.getCenter().getY() - entity.getPos().getY());
                         double offsetZ = Math.abs(innerBox.getCenter().getZ() - entity.getPos().getZ());
                         if (offsetY > offsetX + 2 && offsetY > offsetZ + 2) {
                             if (entity.getPos().getY() > pos.getY()) {
-                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.DOWN)
-                                    ((EntityAttachments) entity).setGravityTimer(5);
-                                GravityChangerAPI.setGravityDirection(entity, Direction.DOWN);
+                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.DOWN) {
+                                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.DOWN, 5, 2, "star_core"));
+                                    ((EntityAttachments) entity).setStarGravityTimer(10);
+                                }
                             }
                             if (entity.getPos().getY() < pos.getY()) {
-                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.UP)
-                                    ((EntityAttachments) entity).setGravityTimer(5);
-                                GravityChangerAPI.setGravityDirection(entity, Direction.UP);
-                            }
+                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.UP) {
+                                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.UP, 5, 2, "star_core"));
+                                    ((EntityAttachments) entity).setStarGravityTimer(10);
+                                }
+                                }
                         }
                         if (offsetZ > offsetY + 2 && offsetZ > offsetX + 2) {
                             if (entity.getPos().getZ() > pos.getZ()) {
-                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.NORTH)
-                                    ((EntityAttachments) entity).setGravityTimer(5);
-                                GravityChangerAPI.setGravityDirection(entity, Direction.NORTH);
-                            }
+                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.NORTH) {
+                                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.NORTH, 5, 2, "star_core"));
+                                    ((EntityAttachments) entity).setStarGravityTimer(10);
+                                }
+                                }
                             if (entity.getPos().getZ() < pos.getZ()) {
-                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.SOUTH)
-                                    ((EntityAttachments) entity).setGravityTimer(5);
-                                GravityChangerAPI.setGravityDirection(entity, Direction.SOUTH);
-                            }
+                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.SOUTH) {
+                                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.SOUTH, 5, 2, "star_core"));
+                                    ((EntityAttachments) entity).setStarGravityTimer(10);
+                                }
+                                }
                         }
 
                         if (offsetX > offsetY + 2 && offsetX > offsetZ + 2) {
                             if (entity.getPos().getX() > pos.getX()) {
-                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.WEST)
-                                    ((EntityAttachments) entity).setGravityTimer(5);
-                                GravityChangerAPI.setGravityDirection(entity, Direction.WEST);
-                            }
+                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.WEST) {
+                                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.WEST, 5, 2, "star_core"));
+                                    ((EntityAttachments) entity).setStarGravityTimer(10);
+                                }
+                                }
                             if (entity.getPos().getX() < pos.getX()) {
-                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.EAST)
-                                    ((EntityAttachments) entity).setGravityTimer(5);
-                                GravityChangerAPI.setGravityDirection(entity, Direction.EAST);
+                                if (GravityChangerAPI.getGravityDirection(entity) != Direction.EAST) {
+                                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.EAST, 5, 2, "star_core"));
+                                    ((EntityAttachments) entity).setStarGravityTimer(10);
+                                }
                             }
                         }
-                    }
+
                 }
             }
         }
