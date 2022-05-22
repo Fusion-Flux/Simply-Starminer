@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "com.fusionflux.starminer.StarMinerRefabricated"
+    ],
+    "client": [
+      "com.fusionflux.starminer.client.StarminerClient"
     ]
   },
   "mixins": [

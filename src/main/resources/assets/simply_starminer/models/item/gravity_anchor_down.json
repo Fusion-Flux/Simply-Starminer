@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "simply_starminer:item/gravity_anchor_down"
+  }
+}
