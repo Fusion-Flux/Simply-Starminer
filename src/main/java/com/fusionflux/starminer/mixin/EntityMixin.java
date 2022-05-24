@@ -17,9 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityMixin implements EntityAttachments {
 	@Shadow public abstract Vec3d getVelocity();
 
-	//
-@Unique
-private Vec3d lastSSMVel = Vec3d.ZERO;
+	@Unique
+	private Vec3d lastSSMVel = Vec3d.ZERO;
 
 	int gravityPlateTimer = 0;
 	int gravityStarTimer = 0;

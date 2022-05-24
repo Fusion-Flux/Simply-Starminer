@@ -1,11 +1,12 @@
 package com.fusionflux.starminer.client;
 
 import com.fusionflux.starminer.StarMinerRefabricated;
-import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 
 @Environment(EnvType.CLIENT)
 public class StarminerClient implements ClientModInitializer {
@@ -15,7 +16,7 @@ public class StarminerClient implements ClientModInitializer {
     }
 
     @Override
-    public void onInitializeClient() {
-registerBlockRenderLayers();
+    public void onInitializeClient(ModContainer mod) {
+        registerBlockRenderLayers();
     }
 }
