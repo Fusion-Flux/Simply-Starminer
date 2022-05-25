@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -17,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityMixin implements EntityAttachments {
 	@Shadow public abstract Vec3d getVelocity();
 
+	@Shadow public World world;
 	@Unique
 	private Vec3d lastSSMVel = Vec3d.ZERO;
 
@@ -25,17 +27,15 @@ public abstract class EntityMixin implements EntityAttachments {
 
 	@Inject(method = "tick", at = @At("HEAD"))
 	public void tick(CallbackInfo ci) {
+	if (gravityPlateTimer > 0) {
+		gravityPlateTimer--;
+	}
 
-		if(gravityPlateTimer>0) {
-			gravityPlateTimer--;
-		}
+	if (gravityStarTimer > 0) {
+		gravityStarTimer--;
+	}
 
-		if(gravityStarTimer>0) {
-			gravityStarTimer--;
-		}
-
-
-		this.lastSSMVel = this.getVelocity();
+	this.lastSSMVel = this.getVelocity();
 	}
 
 	@Override

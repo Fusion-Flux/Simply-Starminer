@@ -5,10 +5,12 @@ import com.fusionflux.starminer.blockentites.StarCoreEntity;
 import com.fusionflux.starminer.blocks.GravityPlate;
 import com.fusionflux.starminer.items.GravityAnchor;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -59,6 +61,7 @@ public class StarMinerRefabricated implements ModInitializer {
 		Registry.register(Registry.ITEM, new Identifier(StarMinerRefabricated.MOD_ID, "gravity_anchor_south"), GRAVITY_ANCHOR_SOUTH);
 		Registry.register(Registry.ITEM, new Identifier(StarMinerRefabricated.MOD_ID, "gravity_anchor_west"), GRAVITY_ANCHOR_WEST);
 		Registry.register(Registry.ITEM, new Identifier(StarMinerRefabricated.MOD_ID, "gravity_anchor_east"), GRAVITY_ANCHOR_EAST);
+
 
 
 		LOGGER.info("Hello Fabric world!");

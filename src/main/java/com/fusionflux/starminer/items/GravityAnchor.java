@@ -48,12 +48,14 @@ public class GravityAnchor extends Item {
     }
 
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (isOn)
-            if (isStrong) {
-                GravityChangerAPI.addGravity(entity, new Gravity(gravityDirection, 99, 2, "gravity_anchor"));
-            } else {
-                GravityChangerAPI.addGravity(entity, new Gravity(gravityDirection, 0, 2, "gravity_anchor"));
-            }
+        if(!world.isClient) {
+            if (isOn)
+                if (isStrong) {
+                    GravityChangerAPI.addGravity(entity, new Gravity(gravityDirection, 99, 2, "gravity_anchor"));
+                } else {
+                    GravityChangerAPI.addGravity(entity, new Gravity(gravityDirection, 0, 2, "gravity_anchor"));
+                }
+        }
     }
 
 
