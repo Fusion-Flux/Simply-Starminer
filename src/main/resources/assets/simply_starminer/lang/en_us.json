@@ -1,0 +1,11 @@
+{
+  "itemGroup.simply_starminer.general": "Simply Starminer",
+  "block.simply_starminer.star_core": "Star Core",
+  "block.simply_starminer.gravity_plate": "Gravity Plate",
+  "item.simply_starminer.gravity_anchor_down": "Gravity Anchor Down",
+  "item.simply_starminer.gravity_anchor_up": "Gravity Anchor Up",
+  "item.simply_starminer.gravity_anchor_north": "Gravity Anchor North",
+  "item.simply_starminer.gravity_anchor_south": "Gravity Anchor South",
+  "item.simply_starminer.gravity_anchor_east": "Gravity Anchor East",
+  "item.simply_starminer.gravity_anchor_west": "Gravity Anchor West"
+}

@@ -1,6 +1,5 @@
 {
 	"credit": "Made with Blockbench by Cart3r.  ",
-	"parent": "builtin/entity",
 	"textures": {
 		"0": "simply_starminer:item/anchor",
 		"1": "simply_starminer:item/letters",

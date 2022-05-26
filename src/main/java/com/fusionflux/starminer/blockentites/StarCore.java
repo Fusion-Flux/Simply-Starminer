@@ -1,6 +1,6 @@
 package com.fusionflux.starminer.blockentites;
 
-import com.fusionflux.starminer.StarMinerRefabricated;
+import com.fusionflux.starminer.SimplyStarMiner;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -63,6 +63,6 @@ public class StarCore extends BlockWithEntity {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, StarMinerRefabricated.STAR_CORE_ENTITY, StarCoreEntity::tick);
+        return checkType(type, SimplyStarMiner.STAR_CORE_ENTITY, StarCoreEntity::tick);
     }
 }

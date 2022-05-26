@@ -1,35 +1,27 @@
 package com.fusionflux.starminer.blockentites;
 
-import com.fusionflux.starminer.StarMinerRefabricated;
+import com.fusionflux.starminer.SimplyStarMiner;
 import com.fusionflux.starminer.util.EntityAttachments;
 import me.andrew.gravitychanger.api.GravityChangerAPI;
 import me.andrew.gravitychanger.util.Gravity;
-import me.andrew.gravitychanger.util.RotationUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.ArrayUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class StarCoreEntity extends BlockEntity {
 
 
     public StarCoreEntity(BlockPos pos, BlockState state) {
-        super(StarMinerRefabricated.STAR_CORE_ENTITY, pos, state);
+        super(SimplyStarMiner.STAR_CORE_ENTITY, pos, state);
     }
 
     int radius = 20;

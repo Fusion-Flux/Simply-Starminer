@@ -248,7 +248,7 @@ public class GravityPlate extends Block {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        this.addCollisionEffects(world, entity, pos);
+        this.addCollisionEffects(world, entity, pos,state);
     }
 
 
@@ -293,10 +293,8 @@ public class GravityPlate extends Block {
         return result;
     }
 
-    private void addCollisionEffects(World world, Entity entity, BlockPos pos) {
+    private void addCollisionEffects(World world, Entity entity, BlockPos pos,BlockState state) {
         Vec3d vec3dLast = ((EntityAttachments) entity).getLastSSMVel();
-
-        BlockState state = world.getBlockState(pos);
 
         Vec3d direction = getDirections(state);
 
