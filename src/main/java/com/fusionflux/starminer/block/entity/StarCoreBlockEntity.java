@@ -1,7 +1,6 @@
-package com.fusionflux.starminer.blockentites;
+package com.fusionflux.starminer.block.entity;
 
-import com.fusionflux.starminer.SimplyStarMiner;
-import com.fusionflux.starminer.util.EntityAttachments;
+import com.fusionflux.starminer.duck.EntityAttachments;
 import me.andrew.gravitychanger.api.GravityChangerAPI;
 import me.andrew.gravitychanger.util.Gravity;
 import net.minecraft.block.BlockState;
@@ -17,18 +16,18 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import static com.fusionflux.starminer.registry.SimplyStarminerBlocks.STAR_CORE_ENTITY;
+import static com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes.STAR_CORE_BLOCK_ENTITY_TYPE;
 
-public class StarCoreEntity extends BlockEntity {
+public class StarCoreBlockEntity extends BlockEntity {
 
 
-    public StarCoreEntity(BlockPos pos, BlockState state) {
-        super(STAR_CORE_ENTITY, pos, state);
+    public StarCoreBlockEntity(BlockPos pos, BlockState state) {
+        super(STAR_CORE_BLOCK_ENTITY_TYPE, pos, state);
     }
 
     public int radius = 25;
 
-    public static void tick(World world, BlockPos pos, BlockState state, StarCoreEntity blockEntity) {
+    public static void tick(World world, BlockPos pos, BlockState state, StarCoreBlockEntity blockEntity) {
         Box innerBox = (new Box(new BlockPos(pos.getX(), pos.getY(), pos.getZ()))).expand(blockEntity.radius);
 
         List<Entity> list = world.getEntitiesByClass(Entity.class, innerBox, e -> true);

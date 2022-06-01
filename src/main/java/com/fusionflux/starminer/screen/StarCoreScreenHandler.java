@@ -1,7 +1,5 @@
-package com.fusionflux.starminer.screenhandlers;
+package com.fusionflux.starminer.screen;
 
-import com.fusionflux.starminer.blockentites.StarCoreEntity;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
@@ -11,7 +9,6 @@ import net.minecraft.screen.slot.Slot;
 import static com.fusionflux.starminer.registry.SimplyStarminerScreenHandlers.STAR_CORE_SCREEN_HANDLER;
 
 public class StarCoreScreenHandler extends ScreenHandler {
-
     public StarCoreScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId,playerInventory, ScreenHandlerContext.EMPTY);
     }
