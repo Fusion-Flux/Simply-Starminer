@@ -1,4 +1,4 @@
-package com.fusionflux.starminer.util;
+package com.fusionflux.starminer.duck;
 
 import net.minecraft.util.math.Vec3d;
 

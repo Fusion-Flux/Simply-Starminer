@@ -1,7 +1,7 @@
-package com.fusionflux.starminer.blockentites;
+package com.fusionflux.starminer.block;
 
-import com.fusionflux.starminer.SimplyStarMiner;
-import com.fusionflux.starminer.screenhandlers.StarCoreScreenHandler;
+import com.fusionflux.starminer.block.entity.StarCoreBlockEntity;
+import com.fusionflux.starminer.screen.StarCoreScreenHandler;
 import io.netty.buffer.Unpooled;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -16,7 +16,6 @@ import net.minecraft.screen.*;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -25,17 +24,18 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import static com.fusionflux.starminer.registry.SimplyStarminerBlocks.STAR_CORE_ENTITY;
+import static com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes.STAR_CORE_BLOCK_ENTITY_TYPE;
 
-public class StarCore extends BlockWithEntity {
-    public StarCore(Settings settings) {
+@SuppressWarnings("deprecation")
+public class StarCoreBlock extends BlockWithEntity {
+    public StarCoreBlock(Settings settings) {
         super(settings);
     }
 
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new StarCoreEntity(pos,state);
+        return new StarCoreBlockEntity(pos,state);
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -47,11 +47,11 @@ public class StarCore extends BlockWithEntity {
                 @Override
                 public Text getDisplayName() {
                     PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-                    buf.writeInt(((StarCoreEntity) world.getBlockEntity(pos)).radius);
+                    //noinspection ConstantConditions
+                    buf.writeInt(((StarCoreBlockEntity) world.getBlockEntity(pos)).radius);
                     return new LiteralText(new String(buf.array()));
                 }
 
-                @Nullable
                 @Override
                 public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
                     return new StarCoreScreenHandler(syncId,inv,ScreenHandlerContext.create(world,pos));
@@ -67,7 +67,6 @@ public class StarCore extends BlockWithEntity {
         return true;
     }
 
-
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
@@ -75,13 +74,11 @@ public class StarCore extends BlockWithEntity {
 
     @Nullable
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> {
-            return new AnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos));
-        }, new TranslatableText("Star Core"));
+        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new AnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), new LiteralText("Star Core"));
     }
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, STAR_CORE_ENTITY, StarCoreEntity::tick);
+        return checkType(type, STAR_CORE_BLOCK_ENTITY_TYPE, StarCoreBlockEntity::tick);
     }
 }
