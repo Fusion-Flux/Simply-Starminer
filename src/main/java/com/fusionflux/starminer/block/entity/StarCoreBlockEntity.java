@@ -1,8 +1,8 @@
 package com.fusionflux.starminer.block.entity;
 
+import com.fusionflux.fusions_gravity_api.api.GravityChangerAPI;
+import com.fusionflux.fusions_gravity_api.util.Gravity;
 import com.fusionflux.starminer.duck.EntityAttachments;
-import me.andrew.gravitychanger.api.GravityChangerAPI;
-import me.andrew.gravitychanger.util.Gravity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;

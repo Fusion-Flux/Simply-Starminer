@@ -2,6 +2,7 @@ package com.fusionflux.starminer.screen;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
@@ -24,6 +25,11 @@ public class StarCoreScreenHandler extends ScreenHandler {
             this.addSlot(new Slot(playerInventory,i,8+i*18,130));
         }
 
+    }
+
+    @Override
+    public ItemStack transferSlot(PlayerEntity player, int index) {
+        return null;
     }
 
     @Override

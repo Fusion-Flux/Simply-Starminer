@@ -1,11 +1,11 @@
 package com.fusionflux.starminer.block;
 
+import com.fusionflux.fusions_gravity_api.api.GravityChangerAPI;
+import com.fusionflux.fusions_gravity_api.util.Gravity;
+import com.fusionflux.fusions_gravity_api.util.RotationUtil;
 import com.fusionflux.starminer.duck.EntityAttachments;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
-import me.andrew.gravitychanger.api.GravityChangerAPI;
-import me.andrew.gravitychanger.util.Gravity;
-import me.andrew.gravitychanger.util.RotationUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;

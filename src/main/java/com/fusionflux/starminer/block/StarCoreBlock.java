@@ -14,7 +14,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.*;
 import net.minecraft.stat.Stats;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -49,7 +48,7 @@ public class StarCoreBlock extends BlockWithEntity {
                     PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
                     //noinspection ConstantConditions
                     buf.writeInt(((StarCoreBlockEntity) world.getBlockEntity(pos)).radius);
-                    return new LiteralText(new String(buf.array()));
+                    return Text.literal(new String(buf.array()));
                 }
 
                 @Override
@@ -74,7 +73,7 @@ public class StarCoreBlock extends BlockWithEntity {
 
     @Nullable
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new AnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), new LiteralText("Star Core"));
+        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new AnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), Text.literal("Star Core"));
     }
 
     @Override
