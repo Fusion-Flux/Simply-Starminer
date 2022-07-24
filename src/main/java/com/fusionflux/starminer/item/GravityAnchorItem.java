@@ -1,7 +1,7 @@
 package com.fusionflux.starminer.item;
 
-import com.fusionflux.fusions_gravity_api.api.GravityChangerAPI;
-import com.fusionflux.fusions_gravity_api.util.Gravity;
+import com.fusionflux.gravity_api.api.GravityChangerAPI;
+import com.fusionflux.gravity_api.util.Gravity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

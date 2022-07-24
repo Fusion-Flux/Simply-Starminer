@@ -1,15 +1,19 @@
 package com.fusionflux.starminer.block;
 
-import com.fusionflux.fusions_gravity_api.api.GravityChangerAPI;
-import com.fusionflux.fusions_gravity_api.util.Gravity;
-import com.fusionflux.fusions_gravity_api.util.RotationUtil;
+import com.fusionflux.gravity_api.api.GravityChangerAPI;
+import com.fusionflux.gravity_api.util.Gravity;
+import com.fusionflux.gravity_api.util.RotationUtil;
+import com.fusionflux.starminer.client.GravityVerifier;
 import com.fusionflux.starminer.duck.EntityAttachments;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -223,40 +227,83 @@ public class GravityPlateBlock extends Block {
     private void addCollisionEffects(World world, Entity entity, BlockPos pos, BlockState state) {
         Vec3d vec3dLast = ((EntityAttachments) entity).getLastSSMVel();
 
+        PacketByteBuf info = GravityVerifier.packInfo(pos);
+
         Vec3d direction = getGravityFromState(state);
 
         Vec3d preChange;
 
         direction = RotationUtil.vecWorldToPlayer(direction, GravityChangerAPI.getGravityDirection(entity));
-        GravityChangerAPI.addGravity(entity, new Gravity(GravityChangerAPI.getGravityDirection(entity), 10, 30, "gravity_plate"));
+        if (entity instanceof ClientPlayerEntity) {
+            GravityChangerAPI.addGravityClient((ClientPlayerEntity)entity, GravityVerifier.newFieldGravity(GravityChangerAPI.getGravityDirection(entity)), GravityVerifier.FIELD_GRAVITY_SOURCE, info);
+        } else {
+            if(!(entity instanceof PlayerEntity))
+                GravityChangerAPI.addGravity(entity, new Gravity(GravityChangerAPI.getGravityDirection(entity), 10, 30, "gravity_plate"));
+        }
+        //GravityChangerAPI.addGravity(entity, new Gravity(GravityChangerAPI.getGravityDirection(entity), 10, 30, "gravity_plate"));
         if (((EntityAttachments) entity).getPlateGravityTimer() == 0) {
             if (entity.verticalCollision) {
                 if (direction.y == 1 || Math.abs(direction.y) == 2 && vec3dLast.getY() > 0) {
-                    ((EntityAttachments) entity).setPlateGravityTimer(10);
                     preChange = RotationUtil.vecPlayerToWorld(new Vec3d(0, 1, 0), GravityChangerAPI.getGravityDirection(entity));
-                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                    if (entity instanceof ClientPlayerEntity) {
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
+                        GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, GravityVerifier.newFieldGravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z)), GravityVerifier.FIELD_GRAVITY_SOURCE, info);
+                    } else {
+                        if (!(entity instanceof PlayerEntity)) {
+                            ((EntityAttachments) entity).setPlateGravityTimer(10);
+                            GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                        }
+                    }
                 }
             }
             if (entity.horizontalCollision) {
                 if (direction.z == -1 || Math.abs(direction.z) == 2 && vec3dLast.getZ() < 0) {
-                    ((EntityAttachments) entity).setPlateGravityTimer(10);
                     preChange = RotationUtil.vecPlayerToWorld(new Vec3d(0, 0, -1), GravityChangerAPI.getGravityDirection(entity));
-                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                    if (entity instanceof ClientPlayerEntity) {
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
+                        GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, GravityVerifier.newFieldGravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z)), GravityVerifier.FIELD_GRAVITY_SOURCE, info);
+                    } else {
+                        if (!(entity instanceof PlayerEntity)) {
+                            ((EntityAttachments) entity).setPlateGravityTimer(10);
+                            GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                        }
+                    }
                 }
                 if (direction.z == 1 || Math.abs(direction.z) == 2 && vec3dLast.getZ() > 0) {
-                    ((EntityAttachments) entity).setPlateGravityTimer(10);
                     preChange = RotationUtil.vecPlayerToWorld(new Vec3d(0, 0, 1), GravityChangerAPI.getGravityDirection(entity));
-                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                    if (entity instanceof ClientPlayerEntity) {
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
+                        GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, GravityVerifier.newFieldGravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z)), GravityVerifier.FIELD_GRAVITY_SOURCE, info);
+                    } else {
+                        if (!(entity instanceof PlayerEntity)) {
+                            ((EntityAttachments) entity).setPlateGravityTimer(10);
+                            GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                        }
+                    }
                 }
                 if (direction.x == 1 || Math.abs(direction.x) == 2 && vec3dLast.getX() > 0) {
-                    ((EntityAttachments) entity).setPlateGravityTimer(10);
                     preChange = RotationUtil.vecPlayerToWorld(new Vec3d(1, 0, 0), GravityChangerAPI.getGravityDirection(entity));
-                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                    if (entity instanceof ClientPlayerEntity) {
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
+                        GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, GravityVerifier.newFieldGravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z)), GravityVerifier.FIELD_GRAVITY_SOURCE, info);
+                    } else {
+                        if (!(entity instanceof PlayerEntity)) {
+                            ((EntityAttachments) entity).setPlateGravityTimer(10);
+                            GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                        }
+                    }
                 }
                 if (direction.x == -1 || Math.abs(direction.x) == 2 && vec3dLast.getX() < 0) {
-                    ((EntityAttachments) entity).setPlateGravityTimer(10);
                     preChange = RotationUtil.vecPlayerToWorld(new Vec3d(-1, 0, 0), GravityChangerAPI.getGravityDirection(entity));
-                    GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                    if (entity instanceof ClientPlayerEntity) {
+                        ((EntityAttachments) entity).setPlateGravityTimer(10);
+                        GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, GravityVerifier.newFieldGravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z)), GravityVerifier.FIELD_GRAVITY_SOURCE, info);
+                    } else {
+                        if (!(entity instanceof PlayerEntity)) {
+                            ((EntityAttachments) entity).setPlateGravityTimer(10);
+                            GravityChangerAPI.addGravity(entity, new Gravity(Direction.fromVector((int) preChange.x, (int) preChange.y, (int) preChange.z), 10, 30, "gravity_plate"));
+                        }
+                    }
                 }
             }
         }

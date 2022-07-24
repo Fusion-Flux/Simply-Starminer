@@ -57,7 +57,26 @@ dependencies {
 		exclude group: "net.fabricmc"
 	}
 
-	modImplementation include ("maven.modrinth:fusions-gravity-api:${project.fusions_gravity_api_version}"){
+	modApi include ("maven.modrinth:gravity-api:${project.gravity_api_version}"){
+		exclude group: "net.fabricmc.fabric-api"
+		exclude group: "net.fabricmc"
+	}
+	modApi ("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.0.1"){
+		exclude group: "net.fabricmc.fabric-api"
+		exclude group: "net.fabricmc"
+	}
+	// Includes Cardinal Components API as a Jar-in-Jar dependency (optional but recommended)
+	include ("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.0.1"){
+		exclude group: "net.fabricmc.fabric-api"
+		exclude group: "net.fabricmc"
+	}
+
+	modApi ("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.0.1"){
+		exclude group: "net.fabricmc.fabric-api"
+		exclude group: "net.fabricmc"
+	}
+	// Includes Cardinal Components API as a Jar-in-Jar dependency (optional but recommended)
+	include ("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.0.1"){
 		exclude group: "net.fabricmc.fabric-api"
 		exclude group: "net.fabricmc"
 	}
@@ -66,7 +85,7 @@ dependencies {
 processResources {
 	inputs.property "version", project.version
 
-	filesMatching("fabric.mod.json") {
+	filesMatching("quilt.mod.json") {
 		expand "version": project.version
 	}
 }

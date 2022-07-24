@@ -1,5 +1,8 @@
 package com.fusionflux.starminer;
 
+import com.fusionflux.gravity_api.util.GravityChannel;
+import com.fusionflux.starminer.client.CoreGravityVerifier;
+import com.fusionflux.starminer.client.GravityVerifier;
 import com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes;
 import com.fusionflux.starminer.registry.SimplyStarminerBlocks;
 import com.fusionflux.starminer.registry.SimplyStarminerItems;
@@ -23,5 +26,7 @@ public class SimplyStarMiner implements ModInitializer {
 		SimplyStarminerItems.init();
 		SimplyStarminerScreenHandlers.init();
 		SimplyStarminerBlockEntityTypes.init();
+		GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(GravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier::check);
+		GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(CoreGravityVerifier.FIELD_GRAVITY_SOURCE, CoreGravityVerifier::check);
 	}
 }

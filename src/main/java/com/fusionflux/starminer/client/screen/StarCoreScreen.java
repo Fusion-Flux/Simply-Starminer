@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 import static com.fusionflux.starminer.SimplyStarMiner.MODID;
 
 public class StarCoreScreen extends HandledScreen<StarCoreScreenHandler> {
-    public static final Identifier TEXTURE = new Identifier(MODID,"textures/gui/star_core.png");
+    public static final Identifier TEXTURE = new Identifier(MODID,"textures/gui/star_heart.png");
 
     public StarCoreScreen(StarCoreScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

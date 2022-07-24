@@ -37,30 +37,6 @@ public class StarCoreBlock extends BlockWithEntity {
         return new StarCoreBlockEntity(pos,state);
     }
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) {
-                player.swingHand(hand);
-            return ActionResult.SUCCESS;
-        } else {
-            player.openHandledScreen(new NamedScreenHandlerFactory() {
-                @Override
-                public Text getDisplayName() {
-                    PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-                    //noinspection ConstantConditions
-                    buf.writeInt(((StarCoreBlockEntity) world.getBlockEntity(pos)).radius);
-                    return Text.literal(new String(buf.array()));
-                }
-
-                @Override
-                public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                    return new StarCoreScreenHandler(syncId,inv,ScreenHandlerContext.create(world,pos));
-                }
-            });
-            player.incrementStat(Stats.INTERACT_WITH_ANVIL);
-            return ActionResult.CONSUME;
-        }
-    }
-
     @Override
     public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
         return true;
@@ -69,11 +45,6 @@ public class StarCoreBlock extends BlockWithEntity {
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
-    }
-
-    @Nullable
-    public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new AnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), Text.literal("Star Core"));
     }
 
     @Override
