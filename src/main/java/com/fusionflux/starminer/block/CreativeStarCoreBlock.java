@@ -25,7 +25,7 @@ public class CreativeStarCoreBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new StarCoreBlockEntity(pos,state);
+        return new CreativeStarCoreBlockEntity(pos,state);
     }
 
     @Override
