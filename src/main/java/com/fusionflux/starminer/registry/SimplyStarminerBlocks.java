@@ -1,9 +1,6 @@
 package com.fusionflux.starminer.registry;
 
-import com.fusionflux.starminer.block.GravityPlateBlock;
-import com.fusionflux.starminer.block.JelloBlock;
-import com.fusionflux.starminer.block.StarCoreBlock;
-import com.fusionflux.starminer.block.TransparentBlockCustom;
+import com.fusionflux.starminer.block.*;
 import net.minecraft.block.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -18,6 +15,7 @@ import static com.fusionflux.starminer.SimplyStarMiner.MODID;
 public interface SimplyStarminerBlocks {
     Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
+    Block CREATIVE_STAR_CORE     = register(new Identifier(MODID, "creative_star_core"),     new CreativeStarCoreBlock(QuiltBlockSettings.copyOf(Blocks.REDSTONE_BLOCK).nonOpaque()));
     Block STAR_CORE     = register(new Identifier(MODID, "star_heart"),     new StarCoreBlock(QuiltBlockSettings.copyOf(Blocks.REDSTONE_BLOCK).nonOpaque()));
     Block GRAVITY_PLATE = register(new Identifier(MODID, "gravity_plate"), new GravityPlateBlock(QuiltBlockSettings.copyOf(Blocks.REDSTONE_BLOCK)));
     Block STAR_SURROUND     = register(new Identifier(MODID, "star_veins"),     new Block(QuiltBlockSettings.copyOf(Blocks.REDSTONE_BLOCK).nonOpaque()));

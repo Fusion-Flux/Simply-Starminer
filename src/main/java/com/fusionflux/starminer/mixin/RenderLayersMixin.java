@@ -16,6 +16,7 @@ import static com.fusionflux.starminer.registry.SimplyStarminerBlocks.*;
 final class RenderLayersMixin {
     @Inject(method = "method_23685", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/RenderLayer;getCutout()Lnet/minecraft/client/render/RenderLayer;"))
     private static void renderTypes(HashMap<Block, RenderLayer> map, CallbackInfo ci) {
+        map.put(CREATIVE_STAR_CORE, RenderLayer.getTranslucent());
         map.put(STAR_CORE, RenderLayer.getTranslucent());
         map.put(STAR_BONE, RenderLayer.getTranslucent());
         map.put(STAR_JELLO, RenderLayer.getTranslucent());

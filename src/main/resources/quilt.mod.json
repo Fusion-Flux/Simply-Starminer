@@ -20,12 +20,9 @@
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
-      "init": [
-        "com.fusionflux.starminer.SimplyStarMiner"
-      ],
-      "client_init": [
-        "com.fusionflux.starminer.client.StarminerClient"
-      ]
+      "init": "com.fusionflux.starminer.SimplyStarMiner",
+      "client_init": "com.fusionflux.starminer.client.SimplyStarminerClient"
+
     },
     "depends": [
       {
@@ -39,6 +36,10 @@
       {
         "id": "minecraft",
         "versions": ">=1.18.2"
+      },
+      {
+        "id": "com.fusionflux:gravity_api",
+        "versions": ">=0.7.21"
       }
     ]
   },

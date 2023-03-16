@@ -1,6 +1,10 @@
 {
   "itemGroup.simply_starminer.general": "Simply Starminer",
-  "block.simply_starminer.star_core": "Star Core",
+  "block.simply_starminer.star_heart": "Star Heart",
+  "block.simply_starminer.star_flesh": "Star Flesh",
+  "block.simply_starminer.star_veins": "Star Veins",
+  "block.simply_starminer.star_jello": "Star Jello",
+  "block.simply_starminer.star_bone": "Star Bone",
   "block.simply_starminer.gravity_plate": "Gravity Plate",
   "item.simply_starminer.gravity_anchor_down": "Gravity Anchor Down",
   "item.simply_starminer.gravity_anchor_up": "Gravity Anchor Up",

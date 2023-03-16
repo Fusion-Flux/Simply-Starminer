@@ -28,7 +28,7 @@ public class StarCoreScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack transferSlot(PlayerEntity player, int index) {
+    public ItemStack quickTransfer(PlayerEntity player, int fromIndex) {
         return null;
     }
 
