@@ -76,46 +76,23 @@ public class StarCoreBlockEntity extends BlockEntity {
                 if (entity instanceof PlayerEntity)
                     if (((PlayerEntity) entity).getAbilities().flying)
                         dontrotate = true;
-                // GravityChangerAPI.addGravity(entity, new Gravity(GravityChangerAPI.getGravityDirection(entity), 5, 2, "star_heart"));
                 if (!dontrotate) {
-                    /*if (entity instanceof ClientPlayerEntity) {
-                        GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, CoreGravityVerifier.newFieldGravity(GravityChangerAPI.getGravityDirection(entity)), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, info);
+                    double x = innerBox.getCenter().getX() - entity.getEyePos().getX();
+                    double y = innerBox.getCenter().getY() - entity.getEyePos().getY();
+                    double z = innerBox.getCenter().getZ() - entity.getEyePos().getZ();
+                    Direction d;
+                    if (Math.abs(x) > Math.abs(y) && Math.abs(x) > Math.abs(z))
+                        d = x < 0 ? Direction.WEST : Direction.EAST;
+                    else if (Math.abs(y) > Math.abs(z) && Math.abs(y) > Math.abs(x))
+                        d = y < 0 ? Direction.DOWN : Direction.UP;
+                    else d = z < 0 ? Direction.NORTH : Direction.SOUTH;
+                    if (world.isClient && entity instanceof PlayerEntity) {
+                        GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, CoreGravityVerifier.newFieldGravity(d), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, info);
                     } else {
-                        if (!(entity instanceof PlayerEntity))
-                            GravityChangerAPI.addGravity(entity, new Gravity(GravityChangerAPI.getGravityDirection(entity), 5, 2, "star_heart"));
-                    }*/
-
-                   // if (((EntityAttachments) entity).getStarGravityTimer() <= 0) {
-                        double x = innerBox.getCenter().getX() - entity.getEyePos().getX();
-                        double y = innerBox.getCenter().getY() - entity.getEyePos().getY();
-                        double z = innerBox.getCenter().getZ() - entity.getEyePos().getZ();
-
-                        /*Optional<Direction> optionalEffectiveDirection = Arrays.stream(Direction.values()).max(Comparator.comparingDouble(d -> innerBox.getCenter().add(new Vec3d(d.getUnitVector())).distanceTo(entity.getEyePos())));
-                        if(optionalEffectiveDirection.isPresent()){
-                            if (entity instanceof ClientPlayerEntity) {
-                                ((EntityAttachments) entity).setStarGravityTimer(2);
-                                GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, CoreGravityVerifier.newFieldGravity(optionalEffectiveDirection.get()), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, info);
-                            } else {
-                                if (!(entity instanceof PlayerEntity)) {
-                                    ((EntityAttachments) entity).setStarGravityTimer(10);
-                                    GravityChangerAPI.addGravity(entity, new Gravity(optionalEffectiveDirection.get(), 5, 2, "star_heart"));
-                                }
-                            }
-                        }*/
-
-                        Direction d;
-                        if (Math.abs(x) > Math.abs(y) && Math.abs(x) > Math.abs(z)) d = x < 0 ? Direction.WEST : Direction.EAST;
-                        else if (Math.abs(y) > Math.abs(z) && Math.abs(y) > Math.abs(x)) d = y < 0 ? Direction.DOWN : Direction.UP;
-                        else d = z < 0 ? Direction.NORTH : Direction.SOUTH;
-                            if (world.isClient && entity instanceof PlayerEntity) {
-                                GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, CoreGravityVerifier.newFieldGravity(d), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, info);
-                            } else {
-                                if (!(entity instanceof PlayerEntity) && !world.isClient) {
-                                    GravityChangerAPI.addGravity(entity, new Gravity(d, 5, 2, "star_heart"));
-                                }
-                            }
-
-                    //}
+                        if (!(entity instanceof PlayerEntity) && !world.isClient) {
+                            GravityChangerAPI.addGravity(entity, new Gravity(d, 5, 2, "star_heart"));
+                        }
+                    }
                 }
             }
         }

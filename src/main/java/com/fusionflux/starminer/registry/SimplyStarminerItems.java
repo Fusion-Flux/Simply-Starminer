@@ -25,11 +25,11 @@ public interface SimplyStarminerItems {
     Item GRAVITY_ANCHOR_SOUTH = register(new Identifier(MODID, "gravity_anchor_south"), new GravityAnchorItem(new QuiltItemSettings().group(STARMINER_GROUP).maxCount(1), Direction.SOUTH));
     Item GRAVITY_ANCHOR_WEST  = register(new Identifier(MODID, "gravity_anchor_west"),  new GravityAnchorItem(new QuiltItemSettings().group(STARMINER_GROUP).maxCount(1), Direction.WEST));
     Item GRAVITY_ANCHOR_EAST  = register(new Identifier(MODID, "gravity_anchor_east"),  new GravityAnchorItem(new QuiltItemSettings().group(STARMINER_GROUP).maxCount(1), Direction.EAST));
-    Item CREATIVE_STAR_CORE_ITEM       = register(new Identifier(MODID, "creative_star_core"),            new BlockItem(CREATIVE_STAR_CORE, new QuiltItemSettings().group(STARMINER_GROUP)));
+    Item CREATIVE_STAR_CORE_ITEM       = register(new Identifier(MODID, "creative_star_nuclei"),            new BlockItem(CREATIVE_STAR_CORE, new QuiltItemSettings().group(STARMINER_GROUP)));
     Item STAR_CORE_ITEM       = register(new Identifier(MODID, "star_heart"),            new BlockItem(STAR_CORE, new QuiltItemSettings().group(STARMINER_GROUP)));
     Item STAR_SURROUND_ITEM       = register(new Identifier(MODID, "star_veins"),            new BlockItem(STAR_SURROUND, new QuiltItemSettings().group(STARMINER_GROUP)));
     Item STAR_BONE_ITEM       = register(new Identifier(MODID, "star_bone"),            new BlockItem(STAR_BONE, new QuiltItemSettings().group(STARMINER_GROUP)));
-    Item STAR_JELLO_ITEM       = register(new Identifier(MODID, "star_jello"),            new BlockItem(STAR_JELLO, new QuiltItemSettings().group(STARMINER_GROUP)));
+    Item STAR_JELLO_ITEM       = register(new Identifier(MODID, "star_gelatin"),            new BlockItem(STAR_JELLO, new QuiltItemSettings().group(STARMINER_GROUP)));
     Item STAR_FLESH_ITEM       = register(new Identifier(MODID, "star_flesh"),            new BlockItem(STAR_FLESH, new QuiltItemSettings().group(STARMINER_GROUP)));
     Item GRAVITY_PLATE_ITEM   = register(new Identifier(MODID, "gravity_plate"),        new BlockItem(GRAVITY_PLATE, new QuiltItemSettings().group(STARMINER_GROUP)));
 
