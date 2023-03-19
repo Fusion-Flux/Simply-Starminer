@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ItemRenderer.class)
-final class ItemRendererMixin {
+public final class ItemRendererMixin {
     @Shadow @Final
     private ItemModels models;
 
