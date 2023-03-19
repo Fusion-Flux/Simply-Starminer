@@ -4,7 +4,8 @@
   "package": "com.fusionflux.starminer.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EntityMixin"
+    "EntityMixin",
+    "ItemEntityMixin"
   ],
   "client": [
     "HandledScreensMixin",
