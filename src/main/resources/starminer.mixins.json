@@ -8,9 +8,7 @@
     "ItemEntityMixin"
   ],
   "client": [
-    "HandledScreensMixin",
-    "ItemRendererMixin",
-    "RenderLayersMixin"
+    "client.ItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

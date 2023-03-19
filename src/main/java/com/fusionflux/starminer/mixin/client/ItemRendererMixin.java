@@ -1,4 +1,4 @@
-package com.fusionflux.starminer.mixin;
+package com.fusionflux.starminer.mixin.client;
 
 import com.fusionflux.starminer.item.GravityAnchorItem;
 import net.minecraft.client.render.item.ItemModels;
