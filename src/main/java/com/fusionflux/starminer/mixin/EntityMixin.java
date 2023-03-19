@@ -5,6 +5,7 @@ import com.fusionflux.gravity_api.util.Gravity;
 import com.fusionflux.starminer.client.CoreGravityVerifier;
 import com.fusionflux.starminer.client.GravityVerifier;
 import com.fusionflux.starminer.duck.EntityAttachments;
+import com.fusionflux.starminer.util.GeneralUtil;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -57,7 +58,6 @@ public abstract class EntityMixin implements EntityAttachments {
         this.lastSSMVel = this.getVelocity();
 
         if ((Object)this instanceof PlayerEntity player && player.getAbilities().flying) return;
-        final Vec3d eyePos = getEyePos();
 
         BlockPos closest = null;
         double closestDist = Double.POSITIVE_INFINITY;
@@ -77,19 +77,8 @@ public abstract class EntityMixin implements EntityAttachments {
         }
 
         if (closest == null) return;
-        final double relX = closest.getX() + 0.5 - eyePos.getX();
-        final double relY = closest.getY() + 0.5 - eyePos.getY();
-        final double relZ = closest.getZ() + 0.5 - eyePos.getZ();
 
-        final Direction direction;
-        if (Math.abs(relX) > Math.abs(relY) && Math.abs(relX) > Math.abs(relZ)) {
-            direction = relX < 0 ? Direction.WEST : Direction.EAST;
-        } else if (Math.abs(relY) > Math.abs(relZ) && Math.abs(relY) > Math.abs(relX)) {
-            direction = relY < 0 ? Direction.DOWN : Direction.UP;
-        } else {
-            direction = relZ < 0 ? Direction.NORTH : Direction.SOUTH;
-        }
-
+        final Direction direction = GeneralUtil.findNearestDirection(Vec3d.ofCenter(closest), getEyePos());
         if (world.isClient && (Object)this instanceof PlayerEntity) {
             addGravityClient(CoreGravityVerifier.newFieldGravity(direction), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier.packInfo(closest));
         } else if (!((Object)this instanceof PlayerEntity) && !world.isClient) {

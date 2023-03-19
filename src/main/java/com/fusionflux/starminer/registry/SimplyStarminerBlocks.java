@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 
-import static com.fusionflux.starminer.SimplyStarMiner.MODID;
+import static com.fusionflux.starminer.SimplyStarminer.MODID;
 
 @SuppressWarnings("unused")
 public interface SimplyStarminerBlocks {

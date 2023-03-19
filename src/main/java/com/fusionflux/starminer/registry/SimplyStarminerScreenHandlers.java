@@ -6,7 +6,7 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import static com.fusionflux.starminer.SimplyStarMiner.MODID;
+import static com.fusionflux.starminer.SimplyStarminer.MODID;
 
 @SuppressWarnings("unused")
 public interface SimplyStarminerScreenHandlers {

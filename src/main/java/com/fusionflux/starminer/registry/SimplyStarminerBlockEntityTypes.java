@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.quiltmc.qsl.block.entity.api.QuiltBlockEntityTypeBuilder;
 
-import static com.fusionflux.starminer.SimplyStarMiner.MODID;
+import static com.fusionflux.starminer.SimplyStarminer.MODID;
 import static com.fusionflux.starminer.registry.SimplyStarminerBlocks.CREATIVE_STAR_CORE;
 import static com.fusionflux.starminer.registry.SimplyStarminerBlocks.STAR_CORE;
 

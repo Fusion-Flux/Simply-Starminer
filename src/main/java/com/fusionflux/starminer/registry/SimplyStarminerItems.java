@@ -8,8 +8,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 
-import static com.fusionflux.starminer.SimplyStarMiner.MODID;
-import static com.fusionflux.starminer.SimplyStarMiner.STARMINER_GROUP;
+import static com.fusionflux.starminer.SimplyStarminer.MODID;
+import static com.fusionflux.starminer.SimplyStarminer.STARMINER_GROUP;
 import static com.fusionflux.starminer.registry.SimplyStarminerBlocks.*;
 
 @SuppressWarnings("unused")

@@ -1,9 +1,8 @@
 package com.fusionflux.starminer.client;
 
-import com.fusionflux.gravity_api.api.RotationParameters;
 import com.fusionflux.gravity_api.util.Gravity;
 import com.fusionflux.gravity_api.util.packet.UpdateGravityPacket;
-import com.fusionflux.starminer.SimplyStarMiner;
+import com.fusionflux.starminer.SimplyStarminer;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.network.PacketByteBuf;
@@ -15,7 +14,7 @@ import net.minecraft.world.World;
 import org.quiltmc.qsl.networking.api.PacketByteBufs;
 
 public class GravityVerifier {
-    public static Identifier FIELD_GRAVITY_SOURCE = new Identifier(SimplyStarMiner.MODID, "gravity_plate");
+    public static Identifier FIELD_GRAVITY_SOURCE = new Identifier(SimplyStarminer.MODID, "gravity_plate");
     public static int FIELD_GRAVITY_PRIORITY = 10;
     public static int FIELD_GRAVITY_MAX_DURATION = 30;
 
