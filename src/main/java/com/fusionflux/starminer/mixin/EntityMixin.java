@@ -1,23 +1,14 @@
 package com.fusionflux.starminer.mixin;
 
-import com.fusionflux.gravity_api.api.GravityChangerAPI;
-import com.fusionflux.gravity_api.util.Gravity;
-import com.fusionflux.starminer.client.CoreGravityVerifier;
-import com.fusionflux.starminer.client.GravityVerifier;
 import com.fusionflux.starminer.duck.EntityAttachments;
 import com.fusionflux.starminer.util.GeneralUtil;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.quiltmc.loader.api.minecraft.ClientOnly;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -34,10 +25,6 @@ public abstract class EntityMixin implements EntityAttachments {
     public abstract Vec3d getVelocity();
 
     @Shadow public World world;
-
-    @Shadow public abstract Vec3d getPos();
-
-    @Shadow public abstract Vec3d getEyePos();
 
     int gravityPlateTimer = 0;
     int gravityStarTimer = 0;
@@ -58,38 +45,7 @@ public abstract class EntityMixin implements EntityAttachments {
         this.lastSSMVel = this.getVelocity();
 
         if ((Object)this instanceof PlayerEntity player && player.getAbilities().flying) return;
-
-        BlockPos closest = null;
-        double closestDist = Double.POSITIVE_INFINITY;
-        final var it = nearbyStarCores.object2IntEntrySet().iterator();
-        while (it.hasNext()) {
-            final var entry = it.next();
-            if (entry.getIntValue() <= 0) {
-                it.remove();
-                continue;
-            }
-            entry.setValue(entry.getIntValue() - 1);
-            final double distance = getPos().distanceTo(Vec3d.ofCenter(entry.getKey()));
-            if (distance < closestDist) {
-                closest = entry.getKey();
-                closestDist = distance;
-            }
-        }
-
-        if (closest == null) return;
-
-        final Direction direction = GeneralUtil.findNearestDirection(Vec3d.ofCenter(closest), getEyePos());
-        if (world.isClient && (Object)this instanceof PlayerEntity) {
-            addGravityClient(CoreGravityVerifier.newFieldGravity(direction), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier.packInfo(closest));
-        } else if (!((Object)this instanceof PlayerEntity) && !world.isClient) {
-            GravityChangerAPI.addGravity((Entity)(Object)this, new Gravity(direction, 5, 2, "star_heart"));
-        }
-    }
-
-    @ClientOnly
-    @SuppressWarnings("DataFlowIssue")
-    private void addGravityClient(Gravity gravity, Identifier verifier, PacketByteBuf verifierInfo) {
-        GravityChangerAPI.addGravityClient((ClientPlayerEntity)(Object)this, gravity, verifier, verifierInfo);
+        GeneralUtil.setAppropriateEntityGravity((Entity)(Object)this);
     }
 
     @Override
