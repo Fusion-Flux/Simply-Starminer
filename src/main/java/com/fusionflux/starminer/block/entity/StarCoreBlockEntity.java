@@ -11,7 +11,6 @@ import static com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes.
 
 public class StarCoreBlockEntity extends AbstractStarCoreBlockEntity {
 
-
     public StarCoreBlockEntity(BlockPos pos, BlockState state) {
         super(STAR_CORE_BLOCK_ENTITY_TYPE, pos, state);
     }
@@ -44,6 +43,8 @@ public class StarCoreBlockEntity extends AbstractStarCoreBlockEntity {
         } else {
             blockEntity.blockScanRadius = 3;
         }
+
+        blockEntity.findNearbyEntities(world);
     }
 
     @Override
