@@ -15,4 +15,7 @@ public interface SimplyStarminerScreenHandlers {
     static <T extends ScreenHandler> ScreenHandlerType<T> register(Identifier id, ScreenHandlerType<T> entry) {
         return Registry.register(Registry.SCREEN_HANDLER, id, entry);
     }
+
+    static void init() {
+    }
 }

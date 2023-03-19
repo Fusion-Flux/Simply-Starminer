@@ -31,4 +31,7 @@ public interface SimplyStarminerItems {
     static <T extends Item> T register(Identifier id, T entry) {
         return Registry.register(Registry.ITEM, id, entry);
     }
+
+    static void init() {
+    }
 }

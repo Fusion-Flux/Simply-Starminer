@@ -22,4 +22,7 @@ public interface SimplyStarminerBlocks {
     static <T extends Block> T register(Identifier id, T entry) {
         return Registry.register(Registry.BLOCK, id, entry);
     }
+
+    static void init() {
+    }
 }

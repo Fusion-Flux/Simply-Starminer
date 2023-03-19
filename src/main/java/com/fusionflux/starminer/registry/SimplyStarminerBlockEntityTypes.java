@@ -19,4 +19,7 @@ public interface SimplyStarminerBlockEntityTypes {
     static <T extends BlockEntityType<?>> T register(Identifier id, T entry) {
         return Registry.register(Registry.BLOCK_ENTITY_TYPE, id, entry);
     }
+
+    static void init() {
+    }
 }
