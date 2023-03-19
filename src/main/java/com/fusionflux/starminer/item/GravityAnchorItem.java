@@ -46,6 +46,7 @@ public class GravityAnchorItem extends Item {
         return TypedActionResult.pass(player.getStackInHand(hand));
     }
 
+    @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (world.isClient) {
             return;
