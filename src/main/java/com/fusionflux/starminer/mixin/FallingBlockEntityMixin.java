@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,16 +30,16 @@ public abstract class FallingBlockEntityMixin extends Entity {
         final Direction gravity = GeneralUtil.getGravityForBlockPos((ServerWorld)entity.world, pos);
         GravityChangerAPI.addGravity(entity, new Gravity(gravity, 5, 2, "star_heart"));
         if (gravity != Direction.DOWN) {
-            // Don't even ask why this is necessary.
             entity.setPosition(entity.getPos().add(0, 0.5, 0));
+            entity.velocityDirty = true;
         }
         return entity;
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void applyGravityT(CallbackInfo ci) {
-        final Direction gravity = GeneralUtil.setAppropriateEntityGravity(this);
-        if (gravity != Direction.DOWN) {
+        GeneralUtil.setAppropriateEntityGravity(this);
+        if (GravityChangerAPI.getGravityDirection(this) != Direction.DOWN) {
             velocityDirty = true;
         }
     }
@@ -52,5 +53,15 @@ public abstract class FallingBlockEntityMixin extends Entity {
     )
     private BlockPos relativeToGravity(BlockPos instance) {
         return instance.offset(GeneralUtil.getGravityForBlockPos((ServerWorld)world, instance));
+    }
+
+    @Override
+    protected Box calculateBoundingBox() {
+        final Box original = super.calculateBoundingBox();
+        final Direction gravity = GravityChangerAPI.getGravityDirection(this);
+        if (gravity == Direction.DOWN) {
+            return original;
+        }
+        return original.offset(gravity.getOffsetX() * 0.5, 0.5, gravity.getOffsetZ() * 0.5);
     }
 }

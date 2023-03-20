@@ -35,6 +35,14 @@ repositories {
 	maven {
 		url "https://maven.terraformersmc.com/"
 	}
+
+	repositories {
+		maven {
+			name = "Gegy"
+			url = "https://maven.gegy.dev"
+		}
+	}
+
 	maven { url 'https://jitpack.io' }
 
 }
@@ -82,6 +90,10 @@ dependencies {
 	}
 
 	implementation("com.github.LlamaLad7:MixinExtras:0.2.0-beta.4")
+
+	modRuntimeOnly ("supercoder79:databreaker:0.2.10") {
+		exclude module: "fabric-loader"
+	}
 }
 
 processResources {
