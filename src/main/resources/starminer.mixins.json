@@ -5,12 +5,13 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "EntityMixin",
+    "FallingBlockEntityMixin",
+    "FallingBlockMixin",
     "ItemEntityMixin"
   ],
   "client": [
-    "HandledScreensMixin",
-    "ItemRendererMixin",
-    "RenderLayersMixin"
+    "client.FallingBlockEntityRendererMixin",
+    "client.ItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

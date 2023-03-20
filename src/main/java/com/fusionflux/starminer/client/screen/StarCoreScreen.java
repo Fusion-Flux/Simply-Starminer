@@ -12,7 +12,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-import static com.fusionflux.starminer.SimplyStarMiner.MODID;
+import static com.fusionflux.starminer.SimplyStarminer.MODID;
 
 public class StarCoreScreen extends HandledScreen<StarCoreScreenHandler> {
     public static final Identifier TEXTURE = new Identifier(MODID,"textures/gui/star_heart.png");

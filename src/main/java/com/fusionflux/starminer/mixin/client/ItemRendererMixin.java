@@ -1,4 +1,4 @@
-package com.fusionflux.starminer.mixin;
+package com.fusionflux.starminer.mixin.client;
 
 import com.fusionflux.starminer.item.GravityAnchorItem;
 import net.minecraft.client.render.item.ItemModels;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ItemRenderer.class)
-final class ItemRendererMixin {
+public final class ItemRendererMixin {
     @Shadow @Final
     private ItemModels models;
 

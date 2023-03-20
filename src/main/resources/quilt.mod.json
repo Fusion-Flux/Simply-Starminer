@@ -20,7 +20,7 @@
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
-      "init": "com.fusionflux.starminer.SimplyStarMiner",
+      "init": "com.fusionflux.starminer.SimplyStarminer",
       "client_init": "com.fusionflux.starminer.client.SimplyStarminerClient"
 
     },
