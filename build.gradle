@@ -94,6 +94,8 @@ dependencies {
 	modRuntimeOnly ("supercoder79:databreaker:0.2.10") {
 		exclude module: "fabric-loader"
 	}
+
+	include modImplementation("maven.modrinth:midnightlib:1.0.0-quilt")
 }
 
 processResources {

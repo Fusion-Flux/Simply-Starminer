@@ -1,5 +1,6 @@
 package com.fusionflux.starminer.mixin;
 
+import com.fusionflux.starminer.SimplyStarminerConfig;
 import com.fusionflux.starminer.duck.EntityAttachments;
 import com.fusionflux.starminer.util.GeneralUtil;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -44,7 +45,11 @@ public abstract class EntityMixin implements EntityAttachments {
 
         this.lastSSMVel = this.getVelocity();
 
-        if ((Object)this instanceof PlayerEntity player && player.getAbilities().flying) return;
+        if (
+            (Object)this instanceof PlayerEntity player &&
+                !SimplyStarminerConfig.creativeFlyingGravity &&
+                player.getAbilities().flying
+        ) return;
         GeneralUtil.setAppropriateEntityGravity((Entity)(Object)this);
     }
 

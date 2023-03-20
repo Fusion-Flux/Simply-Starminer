@@ -1,5 +1,6 @@
 {
   "itemGroup.simply_starminer.general": "Simply Starminer",
+
   "block.simply_starminer.creative_star_nuclei": "Creative Star Nuclei",
   "block.simply_starminer.star_heart": "Star Heart",
   "block.simply_starminer.star_flesh": "Star Flesh",
@@ -7,10 +8,16 @@
   "block.simply_starminer.star_gelatin": "Star Gelatin",
   "block.simply_starminer.star_bone": "Star Bone",
   "block.simply_starminer.gravity_plate": "Gravity Plate",
+
   "item.simply_starminer.gravity_anchor_down": "Gravity Anchor Down",
   "item.simply_starminer.gravity_anchor_up": "Gravity Anchor Up",
   "item.simply_starminer.gravity_anchor_north": "Gravity Anchor North",
   "item.simply_starminer.gravity_anchor_south": "Gravity Anchor South",
   "item.simply_starminer.gravity_anchor_east": "Gravity Anchor East",
-  "item.simply_starminer.gravity_anchor_west": "Gravity Anchor West"
+  "item.simply_starminer.gravity_anchor_west": "Gravity Anchor West",
+
+  "optionslist.simply_starminer.creative_star_core_entity.radius": "Gravity Radius",
+
+  "simply_starminer.midnightconfig.title": "Simply Starminer Config",
+  "simply_starminer.midnightconfig.creativeFlyingGravity": "Creative flight gravity"
 }
