@@ -29,10 +29,10 @@ public abstract class FallingBlockEntityMixin extends Entity {
     private static FallingBlockEntity applyGravityF(FallingBlockEntity entity, @Local BlockPos pos) {
         final Direction gravity = GeneralUtil.getGravityForBlockPos((ServerWorld)entity.world, pos);
         GravityChangerAPI.addGravity(entity, new Gravity(gravity, 5, 2, "star_heart"));
-        if (gravity != Direction.DOWN) {
-            entity.setPosition(entity.getPos().add(0, 0.5, 0));
-            entity.velocityDirty = true;
-        }
+//        if (gravity.getAxis().isHorizontal()) {
+//            entity.setPosition(entity.getPos().add(0, 0.5, 0));
+//            entity.velocityDirty = true;
+//        }
         return entity;
     }
 
