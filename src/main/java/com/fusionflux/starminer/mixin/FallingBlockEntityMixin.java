@@ -11,7 +11,6 @@ import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,13 +28,19 @@ public abstract class FallingBlockEntityMixin extends Entity {
     private static FallingBlockEntity applyGravityF(FallingBlockEntity entity, @Local BlockPos pos) {
         final Direction gravity = GeneralUtil.getGravityForBlockPos((ServerWorld)entity.world, pos);
         GravityChangerAPI.addGravity(entity, new Gravity(gravity, 5, 2, "star_heart"));
-        entity.setPosition(Vec3d.ofCenter(pos).add(Vec3d.of(gravity.getVector())));
+        if (gravity != Direction.DOWN) {
+            // Don't even ask why this is necessary.
+            entity.setPosition(entity.getPos().add(0, 0.5, 0));
+        }
         return entity;
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void applyGravityT(CallbackInfo ci) {
-        GeneralUtil.setAppropriateEntityGravity(this);
+        final Direction gravity = GeneralUtil.setAppropriateEntityGravity(this);
+        if (gravity != Direction.DOWN) {
+            velocityDirty = true;
+        }
     }
 
     @Redirect(

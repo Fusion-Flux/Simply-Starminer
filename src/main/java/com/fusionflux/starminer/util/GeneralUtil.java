@@ -44,7 +44,7 @@ public class GeneralUtil {
         }
     }
 
-    public static void setAppropriateEntityGravity(Entity entity) {
+    public static Direction setAppropriateEntityGravity(Entity entity) {
         BlockPos closest = null;
         double closestDist = Double.POSITIVE_INFINITY;
         final var it = ((EntityAttachments)entity).getNearbyStarCores().object2IntEntrySet().iterator();
@@ -62,7 +62,7 @@ public class GeneralUtil {
             }
         }
 
-        if (closest == null) return;
+        if (closest == null) return Direction.DOWN;
 
         final Direction direction = GeneralUtil.findNearestDirection(Vec3d.ofCenter(closest), entity.getEyePos());
         if (entity.world.isClient && entity instanceof PlayerEntity) {
@@ -70,6 +70,7 @@ public class GeneralUtil {
         } else if (!(entity instanceof PlayerEntity) && !entity.world.isClient) {
             GravityChangerAPI.addGravity(entity, new Gravity(direction, 5, 2, "star_heart"));
         }
+        return direction;
     }
 
     @ClientOnly

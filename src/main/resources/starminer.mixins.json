@@ -10,6 +10,7 @@
     "ItemEntityMixin"
   ],
   "client": [
+    "client.FallingBlockEntityRendererMixin",
     "client.ItemRendererMixin"
   ],
   "injectors": {
