@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import org.quiltmc.qsl.networking.api.PacketByteBufs;
 
 public class CoreGravityVerifier {
-    public static Identifier FIELD_GRAVITY_SOURCE = new Identifier(SimplyStarminer.MODID, "star_heart");
+    public static Identifier FIELD_GRAVITY_SOURCE = new Identifier(SimplyStarminer.MOD_ID, "star_heart");
     public static int FIELD_GRAVITY_PRIORITY = 5;
     public static int FIELD_GRAVITY_MAX_DURATION = 2;
 

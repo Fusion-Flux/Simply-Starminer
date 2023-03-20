@@ -21,8 +21,8 @@
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
       "init": "com.fusionflux.starminer.SimplyStarminer",
-      "client_init": "com.fusionflux.starminer.client.SimplyStarminerClient"
-
+      "client_init": "com.fusionflux.starminer.client.SimplyStarminerClient",
+      "modmenu": "com.fusionflux.starminer.client.SimplyStarminerModMenu"
     },
     "depends": [
       {
