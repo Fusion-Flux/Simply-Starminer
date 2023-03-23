@@ -80,6 +80,6 @@ public class StarCoreBlockEntity extends AbstractStarCoreBlockEntity {
 
     @Override
     public double getGravityMultiplier() {
-        return 1;
+        return Math.pow(2, blockScanRadius - 1) / 4;
     }
 }
