@@ -84,7 +84,7 @@ public class GeneralUtil {
 
         if (closest == null) return Direction.DOWN;
 
-        final Direction direction = GeneralUtil.findNearestDirection(Vec3d.ofCenter(closest.getPos()), entity.getEyePos(), closest.getEnabledDirections());
+        final Direction direction = GeneralUtil.findNearestDirection(closest.getRegionOfActivation().getCenter(), entity.getEyePos(), closest.getEnabledDirections());
         if (entity.world.isClient && entity instanceof PlayerEntity) {
             addGravityClient(entity, CoreGravityVerifier.newFieldGravity(direction), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier.packInfo(closest.getPos()));
         } else if (!(entity instanceof PlayerEntity) && !entity.world.isClient) {
@@ -106,9 +106,9 @@ public class GeneralUtil {
             )
             .map(poi -> (AbstractStarCoreBlockEntity)world.getBlockEntity(poi.getPos()))
             .filter(Objects::nonNull)
-            .filter(e -> GeneralUtil.isWithinCubeRadius(e.getPos(), pos, e.getRadius()))
+            .filter(e -> e.getRegionOfActivation().contains(Vec3d.ofCenter(pos)))
             .min(Comparator.comparingDouble(e -> e.getPos().getSquaredDistance(pos)))
-            .map(e -> GeneralUtil.findNearestDirection(Vec3d.ofCenter(e.getPos()), Vec3d.ofCenter(pos), e.getEnabledDirections()))
+            .map(e -> GeneralUtil.findNearestDirection(e.getRegionOfActivation().getCenter(), Vec3d.ofCenter(pos), e.getEnabledDirections()))
             .orElse(Direction.DOWN);
     }
 }

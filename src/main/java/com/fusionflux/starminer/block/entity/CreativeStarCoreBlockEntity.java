@@ -17,6 +17,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,8 +25,23 @@ import java.util.EnumSet;
 import java.util.Set;
 
 public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity implements ExtendedScreenHandlerFactory {
-    @MidnightConfig.Entry(max = 342)
-    private int radius = 100;
+    @MidnightConfig.Entry(min = -342, max = 342)
+    private double startX = -100;
+
+    @MidnightConfig.Entry(min = -342, max = 342)
+    private double startY = -100;
+
+    @MidnightConfig.Entry(min = -342, max = 342)
+    private double startZ = -100;
+
+    @MidnightConfig.Entry(min = -342, max = 342)
+    private double endX = 100;
+
+    @MidnightConfig.Entry(min = -342, max = 342)
+    private double endY = 100;
+
+    @MidnightConfig.Entry(min = -342, max = 342)
+    private double endZ = 100;
 
     @MidnightConfig.Entry
     private boolean enabledDown = true;
@@ -50,11 +66,6 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
     }
 
     @Override
-    public int getRadius() {
-        return radius;
-    }
-
-    @Override
     public Set<Direction> getEnabledDirections() {
         final Set<Direction> result = EnumSet.noneOf(Direction.class);
         if (enabledDown) {
@@ -76,6 +87,18 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
             result.add(Direction.EAST);
         }
         return result;
+    }
+
+    @Override
+    public Box getRegionOfActivation() {
+        return new Box(
+            pos.getX() + 0.5 + startX,
+            pos.getY() + 0.5 + startY,
+            pos.getZ() + 0.5 + startZ,
+            pos.getX() + 0.5 + endX,
+            pos.getY() + 0.5 + endY,
+            pos.getZ() + 0.5 + endZ
+        );
     }
 
     @Override
