@@ -24,6 +24,8 @@ public abstract class EntityMixin implements EntityAttachments {
 
     private final Object2IntMap<AbstractStarCoreBlockEntity> nearbyStarCores = new Object2IntOpenHashMap<>();
 
+    private double gravityMultiplier = 1;
+
     @SuppressWarnings("ConstantValue")
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
@@ -39,7 +41,10 @@ public abstract class EntityMixin implements EntityAttachments {
             (Object)this instanceof PlayerEntity player &&
                 !SimplyStarminerConfig.creativeFlyingGravity &&
                 player.getAbilities().flying
-        ) return;
+        ) {
+            gravityMultiplier = 1;
+            return;
+        }
         GeneralUtil.setAppropriateEntityGravity((Entity)(Object)this);
     }
 
@@ -56,5 +61,15 @@ public abstract class EntityMixin implements EntityAttachments {
     @Override
     public Object2IntMap<AbstractStarCoreBlockEntity> getNearbyStarCores() {
         return nearbyStarCores;
+    }
+
+    @Override
+    public double getGravityMultiplier() {
+        return gravityMultiplier;
+    }
+
+    @Override
+    public void setGravityMultiplier(double gravityMultiplier) {
+        this.gravityMultiplier = gravityMultiplier;
     }
 }

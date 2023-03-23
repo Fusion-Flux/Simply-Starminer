@@ -52,11 +52,11 @@ public class GeneralUtil {
         }
 
         if (Math.abs(relX) > Math.abs(relY) && Math.abs(relX) > Math.abs(relZ)) {
-            return relX < 0 && enabledDirections.contains(Direction.WEST) ? Direction.WEST : Direction.EAST;
+            return (relX < 0 && enabledDirections.contains(Direction.WEST)) || !enabledDirections.contains(Direction.EAST) ? Direction.WEST : Direction.EAST;
         } else if (Math.abs(relY) > Math.abs(relZ) && Math.abs(relY) > Math.abs(relX)) {
-            return relY < 0 && enabledDirections.contains(Direction.DOWN) ? Direction.DOWN : Direction.UP;
+            return (relY < 0 && enabledDirections.contains(Direction.DOWN)) || !enabledDirections.contains(Direction.UP) ? Direction.DOWN : Direction.UP;
         } else {
-            return relZ < 0 && enabledDirections.contains(Direction.NORTH) ? Direction.NORTH : Direction.SOUTH;
+            return (relZ < 0 && enabledDirections.contains(Direction.NORTH)) || !enabledDirections.contains(Direction.SOUTH) ? Direction.NORTH : Direction.SOUTH;
         }
     }
 
@@ -64,7 +64,7 @@ public class GeneralUtil {
         return findNearestDirection(origin, body, EnumSet.allOf(Direction.class));
     }
 
-    public static Direction setAppropriateEntityGravity(Entity entity) {
+    public static void setAppropriateEntityGravity(Entity entity) {
         AbstractStarCoreBlockEntity closest = null;
         double closestDist = Double.POSITIVE_INFINITY;
         final var it = ((EntityAttachments)entity).getNearbyStarCores().object2IntEntrySet().iterator();
@@ -82,7 +82,10 @@ public class GeneralUtil {
             }
         }
 
-        if (closest == null) return Direction.DOWN;
+        if (closest == null) {
+            ((EntityAttachments)entity).setGravityMultiplier(1);
+            return;
+        }
 
         final Direction direction = GeneralUtil.findNearestDirection(closest.getRegionOfActivation().getCenter(), entity.getEyePos(), closest.getEnabledDirections());
         if (entity.world.isClient && entity instanceof PlayerEntity) {
@@ -90,7 +93,7 @@ public class GeneralUtil {
         } else if (!(entity instanceof PlayerEntity) && !entity.world.isClient) {
             GravityChangerAPI.addGravity(entity, new Gravity(direction, 5, 2, "star_heart"));
         }
-        return direction;
+        ((EntityAttachments)entity).setGravityMultiplier(closest.getGravityMultiplier());
     }
 
     @ClientOnly
