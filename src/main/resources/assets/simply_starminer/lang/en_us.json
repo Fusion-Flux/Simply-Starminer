@@ -17,6 +17,12 @@
   "item.simply_starminer.gravity_anchor_west": "Gravity Anchor West",
 
   "optionslist.simply_starminer.creative_star_core_entity.radius": "Gravity Radius",
+  "optionslist.simply_starminer.creative_star_core_entity.enabledDown": "Enable Down Gravity",
+  "optionslist.simply_starminer.creative_star_core_entity.enabledUp": "Enable Up Gravity",
+  "optionslist.simply_starminer.creative_star_core_entity.enabledNorth": "Enable North Gravity",
+  "optionslist.simply_starminer.creative_star_core_entity.enabledSouth": "Enable South Gravity",
+  "optionslist.simply_starminer.creative_star_core_entity.enabledWest": "Enable West Gravity",
+  "optionslist.simply_starminer.creative_star_core_entity.enabledEast": "Enable East Gravity",
 
   "simply_starminer.midnightconfig.title": "Simply Starminer Config",
   "simply_starminer.midnightconfig.creativeFlyingGravity": "Creative flight gravity"

@@ -1,13 +1,13 @@
 package com.fusionflux.starminer.mixin;
 
 import com.fusionflux.starminer.SimplyStarminerConfig;
+import com.fusionflux.starminer.block.entity.AbstractStarCoreBlockEntity;
 import com.fusionflux.starminer.duck.EntityAttachments;
 import com.fusionflux.starminer.util.GeneralUtil;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,7 +30,7 @@ public abstract class EntityMixin implements EntityAttachments {
     int gravityPlateTimer = 0;
     int gravityStarTimer = 0;
 
-    private final Object2IntMap<BlockPos> nearbyStarCores = new Object2IntOpenHashMap<>();
+    private final Object2IntMap<AbstractStarCoreBlockEntity> nearbyStarCores = new Object2IntOpenHashMap<>();
 
     @SuppressWarnings("ConstantValue")
     @Inject(method = "tick", at = @At("HEAD"))
@@ -79,7 +79,7 @@ public abstract class EntityMixin implements EntityAttachments {
     }
 
     @Override
-    public Object2IntMap<BlockPos> getNearbyStarCores() {
+    public Object2IntMap<AbstractStarCoreBlockEntity> getNearbyStarCores() {
         return nearbyStarCores;
     }
 }
