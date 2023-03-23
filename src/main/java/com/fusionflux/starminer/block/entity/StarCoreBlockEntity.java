@@ -77,4 +77,9 @@ public class StarCoreBlockEntity extends AbstractStarCoreBlockEntity {
     public boolean doesItemMakeVisible(ItemStack stack) {
         return stack.isOf(SimplyStarminerItems.STAR_CORE_ITEM) || stack.isOf(SimplyStarminerItems.CREATIVE_STAR_CORE_ITEM);
     }
+
+    @Override
+    public double getGravityMultiplier() {
+        return Math.pow(2, blockScanRadius - 1) / 4;
+    }
 }

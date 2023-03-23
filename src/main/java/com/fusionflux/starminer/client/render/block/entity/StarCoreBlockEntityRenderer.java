@@ -26,7 +26,7 @@ public class StarCoreBlockEntityRenderer implements BlockEntityRenderer<Abstract
         WorldRenderer.drawBox(
             matrices, vertexConsumers.getBuffer(RenderLayer.getLines()),
             entity.getRegionOfActivation().offset(entity.getPos().multiply(-1)),
-            0.8f, 0.8f, 1.9f, 1.0f
+            0.5f, 0.5f, 1.0f, 1.0f
         );
     }
 

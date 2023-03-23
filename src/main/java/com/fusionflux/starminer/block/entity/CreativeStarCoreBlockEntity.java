@@ -63,6 +63,9 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
     @MidnightConfig.Entry
     private boolean enabledEast = true;
 
+    @MidnightConfig.Entry
+    private double gravityMultiplier = 1;
+
     public CreativeStarCoreBlockEntity(BlockPos pos, BlockState state) {
         super(SimplyStarminerBlockEntityTypes.CREATIVE_STAR_CORE_BLOCK_ENTITY_TYPE, pos, state);
     }
@@ -106,6 +109,11 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
     @Override
     public boolean doesItemMakeVisible(ItemStack stack) {
         return stack.isOf(SimplyStarminerItems.CREATIVE_STAR_CORE_ITEM);
+    }
+
+    @Override
+    public double getGravityMultiplier() {
+        return gravityMultiplier;
     }
 
     @Override

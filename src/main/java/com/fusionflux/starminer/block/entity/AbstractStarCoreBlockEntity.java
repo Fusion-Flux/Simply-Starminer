@@ -27,6 +27,8 @@ public abstract class AbstractStarCoreBlockEntity extends OptionsListBlockEntity
 
     public abstract boolean doesItemMakeVisible(ItemStack stack);
 
+    public abstract double getGravityMultiplier();
+
     public void findNearbyEntities(World world) {
         world.getEntitiesByClass(Entity.class, getRegionOfActivation(), e -> true)
             .forEach(e -> ((EntityAttachments)e).getNearbyStarCores().put(this, 2));
