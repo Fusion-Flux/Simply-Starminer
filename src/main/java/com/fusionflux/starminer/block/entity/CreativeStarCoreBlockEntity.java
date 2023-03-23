@@ -3,11 +3,13 @@ package com.fusionflux.starminer.block.entity;
 import com.fusionflux.starminer.optionslist.OptionsListData;
 import com.fusionflux.starminer.optionslist.OptionsListScreenHandler;
 import com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes;
+import com.fusionflux.starminer.registry.SimplyStarminerItems;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
@@ -99,6 +101,11 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
             pos.getY() + 0.5 + endY,
             pos.getZ() + 0.5 + endZ
         );
+    }
+
+    @Override
+    public boolean doesItemMakeVisible(ItemStack stack) {
+        return stack.isOf(SimplyStarminerItems.CREATIVE_STAR_CORE_ITEM);
     }
 
     @Override
