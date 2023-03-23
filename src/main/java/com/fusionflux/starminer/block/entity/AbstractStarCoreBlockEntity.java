@@ -7,7 +7,10 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+
+import java.util.Set;
 
 public abstract class AbstractStarCoreBlockEntity extends OptionsListBlockEntity {
     public AbstractStarCoreBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -16,8 +19,10 @@ public abstract class AbstractStarCoreBlockEntity extends OptionsListBlockEntity
 
     public abstract int getRadius();
 
+    public abstract Set<Direction> getEnabledDirections();
+
     public void findNearbyEntities(World world) {
         world.getEntitiesByClass(Entity.class, new Box(pos).expand(getRadius()), e -> true)
-            .forEach(e -> ((EntityAttachments)e).getNearbyStarCores().put(pos, 2));
+            .forEach(e -> ((EntityAttachments)e).getNearbyStarCores().put(this, 2));
     }
 }
