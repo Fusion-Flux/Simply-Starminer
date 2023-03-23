@@ -37,6 +37,6 @@ public class StarCoreBlockEntityRenderer implements BlockEntityRenderer<Abstract
 
     @Override
     public int getRenderDistance() {
-        return 96;
+        return 343;
     }
 }
