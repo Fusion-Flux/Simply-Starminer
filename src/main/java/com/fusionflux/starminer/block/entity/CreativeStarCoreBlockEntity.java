@@ -66,6 +66,9 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
     @MidnightConfig.Entry
     private double gravityMultiplier = 1;
 
+    @MidnightConfig.Entry
+    private boolean invertGravity = false;
+
     public CreativeStarCoreBlockEntity(BlockPos pos, BlockState state) {
         super(SimplyStarminerBlockEntityTypes.CREATIVE_STAR_CORE_BLOCK_ENTITY_TYPE, pos, state);
     }
@@ -114,6 +117,11 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
     @Override
     public double getGravityMultiplier() {
         return gravityMultiplier;
+    }
+
+    @Override
+    public boolean invertGravity() {
+        return invertGravity;
     }
 
     @Override

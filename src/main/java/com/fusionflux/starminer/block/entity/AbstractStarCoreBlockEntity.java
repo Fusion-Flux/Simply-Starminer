@@ -29,6 +29,10 @@ public abstract class AbstractStarCoreBlockEntity extends OptionsListBlockEntity
 
     public abstract double getGravityMultiplier();
 
+    public boolean invertGravity() {
+        return false;
+    }
+
     public void findNearbyEntities(World world) {
         world.getEntitiesByClass(Entity.class, getRegionOfActivation(), e -> true)
             .forEach(e -> ((EntityAttachments)e).getNearbyStarCores().put(this, 2));
