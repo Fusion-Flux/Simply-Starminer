@@ -10,6 +10,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.EnumSet;
 import java.util.Set;
 
 public abstract class AbstractStarCoreBlockEntity extends OptionsListBlockEntity {
@@ -17,12 +18,14 @@ public abstract class AbstractStarCoreBlockEntity extends OptionsListBlockEntity
         super(type, pos, state);
     }
 
-    public abstract int getRadius();
+    public Set<Direction> getEnabledDirections() {
+        return EnumSet.allOf(Direction.class);
+    }
 
-    public abstract Set<Direction> getEnabledDirections();
+    public abstract Box getRegionOfActivation();
 
     public void findNearbyEntities(World world) {
-        world.getEntitiesByClass(Entity.class, new Box(pos).expand(getRadius()), e -> true)
+        world.getEntitiesByClass(Entity.class, getRegionOfActivation(), e -> true)
             .forEach(e -> ((EntityAttachments)e).getNearbyStarCores().put(this, 2));
     }
 }

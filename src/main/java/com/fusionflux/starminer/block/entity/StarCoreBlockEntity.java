@@ -5,11 +5,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
-
-import java.util.EnumSet;
-import java.util.Set;
 
 import static com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes.STAR_CORE_BLOCK_ENTITY_TYPE;
 
@@ -70,12 +67,7 @@ public class StarCoreBlockEntity extends AbstractStarCoreBlockEntity {
     }
 
     @Override
-    public int getRadius() {
-        return Math.min(radius, 100);
-    }
-
-    @Override
-    public Set<Direction> getEnabledDirections() {
-        return EnumSet.allOf(Direction.class);
+    public Box getRegionOfActivation() {
+        return new Box(pos).expand(radius);
     }
 }
