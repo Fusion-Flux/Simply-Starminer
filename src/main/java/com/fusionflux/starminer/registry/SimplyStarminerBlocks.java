@@ -16,7 +16,7 @@ public interface SimplyStarminerBlocks {
     Block GRAVITY_PLATE = register(new Identifier(MOD_ID, "gravity_plate"), new GravityPlateBlock(QuiltBlockSettings.copyOf(Blocks.REDSTONE_BLOCK)));
     Block STAR_SURROUND = register(new Identifier(MOD_ID, "star_veins"), new Block(QuiltBlockSettings.copyOf(Blocks.REDSTONE_BLOCK).nonOpaque()));
     Block STAR_FLESH = register(new Identifier(MOD_ID, "star_flesh"), new Block(QuiltBlockSettings.copyOf(Blocks.REDSTONE_BLOCK).nonOpaque().resistance(10000).strength(10000)));
-    TransparentBlockCustom STAR_BONE = register(new Identifier(MOD_ID, "star_bone"), new TransparentBlockCustom(QuiltBlockSettings.copyOf(Blocks.GLASS).nonOpaque().resistance(10000).strength(10000)));
+    CustomTransparentBlock STAR_BONE = register(new Identifier(MOD_ID, "star_bone"), new CustomTransparentBlock(QuiltBlockSettings.copyOf(Blocks.GLASS).nonOpaque().resistance(10000).strength(10000)));
     JelloBlock STAR_JELLO = register(new Identifier(MOD_ID, "star_gelatin"), new JelloBlock(QuiltBlockSettings.copyOf(Blocks.HONEY_BLOCK).nonOpaque()));
 
     static <T extends Block> T register(Identifier id, T entry) {

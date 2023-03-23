@@ -1,10 +1,13 @@
 package com.fusionflux.starminer.client;
 
 import com.fusionflux.starminer.SimplyStarminer;
+import com.fusionflux.starminer.client.render.block.entity.StarCoreBlockEntityRenderer;
 import com.fusionflux.starminer.optionslist.OptionsListScreen;
+import com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.ModelIdentifier;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
@@ -27,6 +30,9 @@ public class SimplyStarminerClient implements ClientModInitializer {
         });
 
         BlockRenderLayerMap.put(RenderLayer.getTranslucent(), CREATIVE_STAR_CORE, STAR_CORE, STAR_BONE, STAR_JELLO);
+
+        BlockEntityRendererFactories.register(SimplyStarminerBlockEntityTypes.STAR_CORE_BLOCK_ENTITY_TYPE, StarCoreBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(SimplyStarminerBlockEntityTypes.CREATIVE_STAR_CORE_BLOCK_ENTITY_TYPE, StarCoreBlockEntityRenderer::new);
 
         HandledScreens.register(SimplyStarminer.OPTIONS_LIST_SCREEN_HANDLER, OptionsListScreen::new);
     }

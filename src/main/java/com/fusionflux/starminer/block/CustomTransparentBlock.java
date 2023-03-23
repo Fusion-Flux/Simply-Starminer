@@ -8,8 +8,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 
 @SuppressWarnings("deprecation")
-public class TransparentBlockCustom extends Block {
-    public TransparentBlockCustom(Settings settings) {
+public class CustomTransparentBlock extends Block {
+    public CustomTransparentBlock(Settings settings) {
         super(settings);
     }
 

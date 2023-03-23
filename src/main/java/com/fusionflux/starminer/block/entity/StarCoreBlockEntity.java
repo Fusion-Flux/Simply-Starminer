@@ -1,7 +1,9 @@
 package com.fusionflux.starminer.block.entity;
 
 import com.fusionflux.starminer.registry.SimplyStarminerBlocks;
+import com.fusionflux.starminer.registry.SimplyStarminerItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.math.BlockPos;
@@ -69,5 +71,10 @@ public class StarCoreBlockEntity extends AbstractStarCoreBlockEntity {
     @Override
     public Box getRegionOfActivation() {
         return new Box(pos).expand(radius);
+    }
+
+    @Override
+    public boolean doesItemMakeVisible(ItemStack stack) {
+        return stack.isOf(SimplyStarminerItems.STAR_CORE_ITEM) || stack.isOf(SimplyStarminerItems.CREATIVE_STAR_CORE_ITEM);
     }
 }
