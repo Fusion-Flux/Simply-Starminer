@@ -29,6 +29,7 @@
   "optionslist.simply_starminer.creative_star_core_entity.enabledWest": "Enable West Gravity",
   "optionslist.simply_starminer.creative_star_core_entity.enabledEast": "Enable East Gravity",
   "optionslist.simply_starminer.creative_star_core_entity.gravityMultiplier": "Gravity Multiplier",
+  "optionslist.simply_starminer.creative_star_core_entity.invertGravity": "Invert Gravity",
 
   "simply_starminer.midnightconfig.title": "Simply Starminer Config",
   "simply_starminer.midnightconfig.creativeFlyingGravity": "Creative flight gravity"

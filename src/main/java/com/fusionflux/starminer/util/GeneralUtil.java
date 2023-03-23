@@ -20,19 +20,11 @@ import net.minecraft.world.poi.PointOfInterestStorage;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 
 import java.util.Comparator;
-import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class GeneralUtil {
-    public static boolean isWithinCubeRadius(BlockPos a, BlockPos b, int radius) {
-        final int distanceX = Math.abs(b.getX() - a.getX());
-        final int distanceY = Math.abs(b.getY() - a.getY());
-        final int distanceZ = Math.abs(b.getZ() - a.getZ());
-        return Math.max(distanceX, Math.max(distanceY, distanceZ)) <= radius;
-    }
-
-    public static Direction findNearestDirection(Vec3d origin, Vec3d body, Set<Direction> enabledDirections) {
+    public static Direction findNearestDirection(Vec3d origin, Vec3d body, Set<Direction> enabledDirections, boolean invert) {
         if (enabledDirections.isEmpty()) {
             return Direction.DOWN; // Fallback
         }
@@ -51,17 +43,16 @@ public class GeneralUtil {
             relZ = 0;
         }
 
+        final Direction result;
         if (Math.abs(relX) > Math.abs(relY) && Math.abs(relX) > Math.abs(relZ)) {
-            return (relX < 0 && enabledDirections.contains(Direction.WEST)) || !enabledDirections.contains(Direction.EAST) ? Direction.WEST : Direction.EAST;
+            result = (relX < 0 && enabledDirections.contains(Direction.WEST)) || !enabledDirections.contains(Direction.EAST) ? Direction.WEST : Direction.EAST;
         } else if (Math.abs(relY) > Math.abs(relZ) && Math.abs(relY) > Math.abs(relX)) {
-            return (relY < 0 && enabledDirections.contains(Direction.DOWN)) || !enabledDirections.contains(Direction.UP) ? Direction.DOWN : Direction.UP;
+            result = (relY < 0 && enabledDirections.contains(Direction.DOWN)) || !enabledDirections.contains(Direction.UP) ? Direction.DOWN : Direction.UP;
         } else {
-            return (relZ < 0 && enabledDirections.contains(Direction.NORTH)) || !enabledDirections.contains(Direction.SOUTH) ? Direction.NORTH : Direction.SOUTH;
+            result = (relZ < 0 && enabledDirections.contains(Direction.NORTH)) || !enabledDirections.contains(Direction.SOUTH) ? Direction.NORTH : Direction.SOUTH;
         }
-    }
 
-    public static Direction findNearestDirection(Vec3d origin, Vec3d body) {
-        return findNearestDirection(origin, body, EnumSet.allOf(Direction.class));
+        return invert ? result.getOpposite() : result;
     }
 
     public static void setAppropriateEntityGravity(Entity entity) {
@@ -87,7 +78,12 @@ public class GeneralUtil {
             return;
         }
 
-        final Direction direction = GeneralUtil.findNearestDirection(closest.getRegionOfActivation().getCenter(), entity.getEyePos(), closest.getEnabledDirections());
+        final Direction direction = findNearestDirection(
+            closest.getRegionOfActivation().getCenter(),
+            closest.invertGravity() ? entity.getPos() : entity.getEyePos(),
+            closest.getEnabledDirections(),
+            closest.invertGravity()
+        );
         if (entity.world.isClient && entity instanceof PlayerEntity) {
             addGravityClient(entity, CoreGravityVerifier.newFieldGravity(direction), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier.packInfo(closest.getPos()));
         } else if (!(entity instanceof PlayerEntity) && !entity.world.isClient) {
@@ -111,7 +107,7 @@ public class GeneralUtil {
             .filter(Objects::nonNull)
             .filter(e -> e.getRegionOfActivation().contains(Vec3d.ofCenter(pos)))
             .min(Comparator.comparingDouble(e -> e.getPos().getSquaredDistance(pos)))
-            .map(e -> GeneralUtil.findNearestDirection(e.getRegionOfActivation().getCenter(), Vec3d.ofCenter(pos), e.getEnabledDirections()))
+            .map(e -> findNearestDirection(e.getRegionOfActivation().getCenter(), Vec3d.ofCenter(pos), e.getEnabledDirections(), e.invertGravity()))
             .orElse(Direction.DOWN);
     }
 }
