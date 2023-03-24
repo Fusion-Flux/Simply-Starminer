@@ -27,6 +27,7 @@ public interface SimplyStarminerItems {
     Item STAR_JELLO_ITEM = register(new Identifier(MOD_ID, "star_gelatin"), new BlockItem(STAR_JELLO, new QuiltItemSettings().group(STARMINER_GROUP)));
     Item STAR_FLESH_ITEM = register(new Identifier(MOD_ID, "star_flesh"), new BlockItem(STAR_FLESH, new QuiltItemSettings().group(STARMINER_GROUP)));
     Item GRAVITY_PLATE_ITEM = register(new Identifier(MOD_ID, "gravity_plate"), new BlockItem(GRAVITY_PLATE, new QuiltItemSettings().group(STARMINER_GROUP)));
+    Item GRAVITY_SPYGLASS = register(new Identifier(MOD_ID, "gravity_spyglass"), new Item(new QuiltItemSettings().group(STARMINER_GROUP).maxCount(1)));
 
     static <T extends Item> T register(Identifier id, T entry) {
         return Registry.register(Registry.ITEM, id, entry);

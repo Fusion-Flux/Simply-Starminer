@@ -108,7 +108,7 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
 
     @Override
     public boolean doesItemMakeVisible(ItemStack stack) {
-        return stack.isOf(SimplyStarminerItems.CREATIVE_STAR_CORE_ITEM);
+        return stack.isOf(SimplyStarminerItems.CREATIVE_STAR_CORE_ITEM) || stack.isOf(SimplyStarminerItems.GRAVITY_SPYGLASS);
     }
 
     @Override

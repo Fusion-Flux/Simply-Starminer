@@ -20,6 +20,7 @@
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
+      "preLaunch": "com.llamalad7.mixinextras.MixinExtrasBootstrap::init",
       "init": "com.fusionflux.starminer.SimplyStarminer",
       "client_init": "com.fusionflux.starminer.client.SimplyStarminerClient",
       "modmenu": "com.fusionflux.starminer.client.SimplyStarminerModMenu"
@@ -40,6 +41,10 @@
       {
         "id": "com.fusionflux:gravity_api",
         "versions": ">=0.7.21"
+      },
+      {
+        "id": "eu.midnightdust:midnightlib",
+        "versions": ">=1.0.0"
       }
     ]
   },

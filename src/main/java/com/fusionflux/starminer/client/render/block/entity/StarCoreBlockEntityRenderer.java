@@ -1,6 +1,8 @@
 package com.fusionflux.starminer.client.render.block.entity;
 
+import com.fusionflux.gravity_api.api.GravityChangerAPI;
 import com.fusionflux.starminer.block.entity.AbstractStarCoreBlockEntity;
+import com.fusionflux.starminer.block.entity.CreativeStarCoreBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -20,8 +22,7 @@ public class StarCoreBlockEntityRenderer implements BlockEntityRenderer<Abstract
     public void render(AbstractStarCoreBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         final MinecraftClient client = MinecraftClient.getInstance();
         assert client.player != null;
-        if ((!(client.cameraEntity instanceof LivingEntity living) || !living.isHolding(entity::doesItemMakeVisible)) &&
-            !client.player.isCreative() && !client.player.isSpectator()
+        if ((!(client.cameraEntity instanceof LivingEntity living) || !living.isHolding(entity::doesItemMakeVisible))
         ) return;
         WorldRenderer.drawBox(
             matrices, vertexConsumers.getBuffer(RenderLayer.getLines()),
