@@ -66,15 +66,5 @@ public abstract class FallingBlockEntityMixin extends Entity {
         return original.offset(gravity.getOffsetX() * 0.5, 0.5, gravity.getOffsetZ() * 0.5);
     }
 
-    @ModifyArg(
-        method = "tick",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/util/math/Vec3d;add(DDD)Lnet/minecraft/util/math/Vec3d;"
-        ),
-        index = 1
-    )
-    private double multiplyGravity(double x) {
-        return x * ((EntityAttachments)this).getGravityMultiplier();
-    }
+
 }

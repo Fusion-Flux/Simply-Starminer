@@ -29,8 +29,5 @@ public abstract class ItemEntityMixin extends Entity {
         getStack().getItem().inventoryTick(getStack(), world, this, 0, true);
     }
 
-    @ModifyConstant(method = "tick", constant = @Constant(doubleValue = -0.04))
-    private double multiplyGravity(double constant) {
-        return constant * ((EntityAttachments)this).getGravityMultiplier();
-    }
+
 }

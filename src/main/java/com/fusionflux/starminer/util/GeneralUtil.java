@@ -85,11 +85,11 @@ public class GeneralUtil {
             closest.invertGravity()
         );
         if (entity.world.isClient && entity instanceof PlayerEntity) {
-            addGravityClient(entity, CoreGravityVerifier.newFieldGravity(direction), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier.packInfo(closest.getPos()));
+            addGravityClient(entity, CoreGravityVerifier.newFieldGravity(direction, closest.getGravityMultiplier()), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier.packInfo(closest.getPos()));
         } else if (!(entity instanceof PlayerEntity) && !entity.world.isClient) {
-            GravityChangerAPI.addGravity(entity, new Gravity(direction, 5, 2, "star_heart"));
+            GravityChangerAPI.addGravity(entity, new Gravity(direction, 5,closest.getGravityMultiplier(), 2, "star_heart"));
         }
-        ((EntityAttachments)entity).setGravityMultiplier(closest.getGravityMultiplier());
+        //((EntityAttachments)entity).setGravityMultiplier(closest.getGravityMultiplier());
     }
 
     @ClientOnly

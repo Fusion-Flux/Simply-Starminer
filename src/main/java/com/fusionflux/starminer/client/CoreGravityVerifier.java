@@ -19,6 +19,9 @@ public class CoreGravityVerifier {
     public static int FIELD_GRAVITY_MAX_DURATION = 2;
 
 
+    public static Gravity newFieldGravity(Direction direction, double strength){
+        return new Gravity(direction, FIELD_GRAVITY_PRIORITY, strength, FIELD_GRAVITY_MAX_DURATION, FIELD_GRAVITY_SOURCE.toString());
+    }
     public static Gravity newFieldGravity(Direction direction){
         return new Gravity(direction, FIELD_GRAVITY_PRIORITY, FIELD_GRAVITY_MAX_DURATION, FIELD_GRAVITY_SOURCE.toString());
     }
