@@ -29,7 +29,7 @@ public abstract class FallingBlockEntityMixin extends Entity {
 
     @ModifyReturnValue(method = "fall", at = @At("RETURN"))
     private static FallingBlockEntity applyGravityF(FallingBlockEntity entity, @Local BlockPos pos) {
-        final Direction gravity = GeneralUtil.getGravityForBlockPos((ServerWorld)entity.world, pos);
+        final Direction gravity = GeneralUtil.getGravityForBlockPos((ServerWorld)entity.getWorld(), pos);
         GravityChangerAPI.addGravity(entity, new Gravity(gravity, 5, 2, "star_heart"));
         if (gravity != Direction.DOWN) {
             entity.velocityDirty = true;
@@ -53,7 +53,7 @@ public abstract class FallingBlockEntityMixin extends Entity {
         )
     )
     private BlockPos relativeToGravity(BlockPos instance) {
-        return instance.offset(GeneralUtil.getGravityForBlockPos((ServerWorld)world, instance));
+        return instance.offset(GeneralUtil.getGravityForBlockPos((ServerWorld)getWorld(), instance));
     }
 
     @Override

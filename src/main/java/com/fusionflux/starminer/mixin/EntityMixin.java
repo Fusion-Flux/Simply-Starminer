@@ -1,12 +1,24 @@
 package com.fusionflux.starminer.mixin;
 
+import com.fusionflux.gravity_api.mixin.*;
+import com.fusionflux.gravity_api.mixin.client.CameraMixin;
+import com.fusionflux.gravity_api.mixin.client.ClientPlayNetworkHandlerMixin;
+import com.fusionflux.gravity_api.mixin.client.EntityRenderMixin;
+import com.fusionflux.gravity_api.mixin.client.PlayerEntityRendererMixin;
+import com.fusionflux.gravity_api.util.QuaternionUtil;
+import com.fusionflux.gravity_api.util.RotationUtil;
 import com.fusionflux.starminer.SimplyStarminerConfig;
 import com.fusionflux.starminer.block.entity.AbstractStarCoreBlockEntity;
 import com.fusionflux.starminer.duck.EntityAttachments;
 import com.fusionflux.starminer.util.GeneralUtil;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.Camera;
+import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;

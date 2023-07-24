@@ -109,11 +109,6 @@ public class GravityPlateBlock extends Block {
     }
 
     @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.DESTROY;
-    }
-
-    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(NORTH, SOUTH, EAST, WEST, UP, DOWN);
     }

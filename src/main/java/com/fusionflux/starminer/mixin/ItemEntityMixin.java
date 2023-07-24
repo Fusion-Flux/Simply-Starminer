@@ -26,7 +26,7 @@ public abstract class ItemEntityMixin extends Entity {
     @Inject(method = "tick", at = @At("TAIL"))
     private void gravityAnchor(CallbackInfo ci) {
         if (isRemoved() || !(getStack().getItem() instanceof GravityAnchorItem)) return;
-        getStack().getItem().inventoryTick(getStack(), world, this, 0, true);
+        getStack().getItem().inventoryTick(getStack(), getWorld(), this, 0, true);
     }
 
 

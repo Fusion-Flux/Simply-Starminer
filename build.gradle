@@ -69,22 +69,22 @@ dependencies {
 		exclude group: "net.fabricmc.fabric-api"
 		exclude group: "net.fabricmc"
 	}
-	modApi ("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.0.1"){
+	modApi ("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"){
 		exclude group: "net.fabricmc.fabric-api"
 		exclude group: "net.fabricmc"
 	}
 	// Includes Cardinal Components API as a Jar-in-Jar dependency (optional but recommended)
-	include ("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.0.1"){
+	include ("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"){
 		exclude group: "net.fabricmc.fabric-api"
 		exclude group: "net.fabricmc"
 	}
 
-	modApi ("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.0.1"){
+	modApi ("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"){
 		exclude group: "net.fabricmc.fabric-api"
 		exclude group: "net.fabricmc"
 	}
 	// Includes Cardinal Components API as a Jar-in-Jar dependency (optional but recommended)
-	include ("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.0.1"){
+	include ("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"){
 		exclude group: "net.fabricmc.fabric-api"
 		exclude group: "net.fabricmc"
 	}

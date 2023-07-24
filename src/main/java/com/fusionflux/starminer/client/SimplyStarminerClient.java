@@ -2,7 +2,6 @@ package com.fusionflux.starminer.client;
 
 import com.fusionflux.starminer.SimplyStarminer;
 import com.fusionflux.starminer.client.render.block.entity.StarCoreBlockEntityRenderer;
-import com.fusionflux.starminer.optionslist.OptionsListScreen;
 import com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
@@ -21,19 +20,17 @@ public class SimplyStarminerClient implements ClientModInitializer {
     @Override
     public void onInitializeClient(ModContainer mod) {
         ModelLoadingRegistry.INSTANCE.registerModelProvider((manager, out) -> {
-            out.accept(new ModelIdentifier("simply_starminer:gravity_anchor_down_in_hand#inventory"));
-            out.accept(new ModelIdentifier("simply_starminer:gravity_anchor_up_in_hand#inventory"));
-            out.accept(new ModelIdentifier("simply_starminer:gravity_anchor_east_in_hand#inventory"));
-            out.accept(new ModelIdentifier("simply_starminer:gravity_anchor_north_in_hand#inventory"));
-            out.accept(new ModelIdentifier("simply_starminer:gravity_anchor_south_in_hand#inventory"));
-            out.accept(new ModelIdentifier("simply_starminer:gravity_anchor_west_in_hand#inventory"));
+            out.accept(new ModelIdentifier("simply_starminer","gravity_anchor_down_in_hand","inventory"));
+            out.accept(new ModelIdentifier("simply_starminer","gravity_anchor_up_in_hand","inventory"));
+            out.accept(new ModelIdentifier("simply_starminer","gravity_anchor_east_in_hand","inventory"));
+            out.accept(new ModelIdentifier("simply_starminer","gravity_anchor_north_in_hand","inventory"));
+            out.accept(new ModelIdentifier("simply_starminer","gravity_anchor_south_in_hand","inventory"));
+            out.accept(new ModelIdentifier("simply_starminer","gravity_anchor_west_in_hand","inventory"));
         });
 
         BlockRenderLayerMap.put(RenderLayer.getTranslucent(), CREATIVE_STAR_CORE, STAR_CORE, STAR_BONE, STAR_JELLO);
 
         BlockEntityRendererFactories.register(SimplyStarminerBlockEntityTypes.STAR_CORE_BLOCK_ENTITY_TYPE, StarCoreBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(SimplyStarminerBlockEntityTypes.CREATIVE_STAR_CORE_BLOCK_ENTITY_TYPE, StarCoreBlockEntityRenderer::new);
-
-        HandledScreens.register(SimplyStarminer.OPTIONS_LIST_SCREEN_HANDLER, OptionsListScreen::new);
     }
 }

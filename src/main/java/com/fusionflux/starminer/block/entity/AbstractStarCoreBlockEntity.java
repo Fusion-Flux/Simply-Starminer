@@ -1,8 +1,8 @@
 package com.fusionflux.starminer.block.entity;
 
 import com.fusionflux.starminer.duck.EntityAttachments;
-import com.fusionflux.starminer.optionslist.OptionsListBlockEntity;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import java.util.EnumSet;
 import java.util.Set;
 
-public abstract class AbstractStarCoreBlockEntity extends OptionsListBlockEntity {
+public abstract class AbstractStarCoreBlockEntity extends BlockEntity {
     public AbstractStarCoreBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }

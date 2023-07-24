@@ -84,9 +84,9 @@ public class GeneralUtil {
             closest.getEnabledDirections(),
             closest.invertGravity()
         );
-        if (entity.world.isClient && entity instanceof PlayerEntity) {
+        if (entity.getWorld().isClient && entity instanceof PlayerEntity) {
             addGravityClient(entity, CoreGravityVerifier.newFieldGravity(direction, closest.getGravityMultiplier()), CoreGravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier.packInfo(closest.getPos()));
-        } else if (!(entity instanceof PlayerEntity) && !entity.world.isClient) {
+        } else if (!(entity instanceof PlayerEntity) && !entity.getWorld().isClient) {
             GravityChangerAPI.addGravity(entity, new Gravity(direction, 5,closest.getGravityMultiplier(), 2, "star_heart"));
         }
         //((EntityAttachments)entity).setGravityMultiplier(closest.getGravityMultiplier());
@@ -94,7 +94,9 @@ public class GeneralUtil {
 
     @ClientOnly
     private static void addGravityClient(Entity entity, Gravity gravity, Identifier verifier, PacketByteBuf verifierInfo) {
-        GravityChangerAPI.addGravityClient((ClientPlayerEntity)entity, gravity, verifier, verifierInfo);
+        if(entity instanceof ClientPlayerEntity) {
+            GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, gravity, verifier, verifierInfo);
+        }
     }
 
     public static Direction getGravityForBlockPos(ServerWorld world, BlockPos pos) {

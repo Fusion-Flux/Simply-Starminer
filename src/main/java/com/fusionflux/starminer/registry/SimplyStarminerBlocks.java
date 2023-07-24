@@ -3,8 +3,9 @@ package com.fusionflux.starminer.registry;
 import com.fusionflux.starminer.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 
 import static com.fusionflux.starminer.SimplyStarminer.MOD_ID;
@@ -20,7 +21,7 @@ public interface SimplyStarminerBlocks {
     JelloBlock STAR_JELLO = register(new Identifier(MOD_ID, "star_gelatin"), new JelloBlock(QuiltBlockSettings.copyOf(Blocks.HONEY_BLOCK).nonOpaque()));
 
     static <T extends Block> T register(Identifier id, T entry) {
-        return Registry.register(Registry.BLOCK, id, entry);
+        return Registry.register(Registries.BLOCK, id, entry);
     }
 
     static void init() {

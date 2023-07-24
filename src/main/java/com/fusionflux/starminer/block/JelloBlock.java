@@ -26,7 +26,7 @@ public class JelloBlock extends TransparentBlock {
     private static final double field_31102 = 0.08D;
     private static final double field_31103 = 0.05D;
     private static final int TICKS_PER_SECOND = 20;
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 1.0D, 1.0D, 15.0D, 15.0D, 15.0D);
 
     public JelloBlock(Settings settings) {
         super(settings);
@@ -44,7 +44,7 @@ public class JelloBlock extends TransparentBlock {
         entity.playSound(SoundEvents.BLOCK_HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
             addParticles(entity,10);
 
-        if (entity.handleFallDamage(fallDistance, 0.2F, DamageSource.FALL)) {
+        if (entity.handleFallDamage(fallDistance, 0.2F, world.getDamageSources().fall())) {
             entity.playSound(this.soundGroup.getFallSound(), this.soundGroup.getVolume() * 0.5F, this.soundGroup.getPitch() * 0.75F);
         }
 
@@ -76,8 +76,8 @@ public class JelloBlock extends TransparentBlock {
     }
 
     private void triggerAdvancement(Entity entity, BlockPos pos) {
-        if (entity instanceof ServerPlayerEntity && entity.world.getTime() % 20L == 0L) {
-            Criteria.SLIDE_DOWN_BLOCK.trigger((ServerPlayerEntity)entity, entity.world.getBlockState(pos));
+        if (entity instanceof ServerPlayerEntity && entity.getWorld().getTime() % 20L == 0L) {
+            Criteria.SLIDE_DOWN_BLOCK.trigger((ServerPlayerEntity)entity, entity.getWorld().getBlockState(pos));
         }
 
     }
@@ -91,7 +91,7 @@ public class JelloBlock extends TransparentBlock {
             entity.setVelocity(new Vec3d(vec3d.x, -0.05D, vec3d.z));
         }
 
-        entity.onLanding();
+        entity.resetFallDistance();
     }
 
     private void addCollisionEffects(World world, Entity entity) {
@@ -116,11 +116,11 @@ public class JelloBlock extends TransparentBlock {
     }
 
     private static void addParticles(Entity entity, int count) {
-        if (entity.world.isClient) {
+        if (entity.getWorld().isClient) {
             BlockState blockState = STAR_JELLO.getDefaultState();
 
             for(int i = 0; i < count; ++i) {
-                entity.world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, blockState), entity.getX(), entity.getY(), entity.getZ(), 0.0D, 0.0D, 0.0D);
+                entity.getWorld().addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, blockState), entity.getX(), entity.getY(), entity.getZ(), 0.0D, 0.0D, 0.0D);
             }
 
         }

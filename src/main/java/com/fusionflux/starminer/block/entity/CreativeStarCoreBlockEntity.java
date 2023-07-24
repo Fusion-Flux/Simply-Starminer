@@ -1,7 +1,5 @@
 package com.fusionflux.starminer.block.entity;
 
-import com.fusionflux.starminer.optionslist.OptionsListData;
-import com.fusionflux.starminer.optionslist.OptionsListScreenHandler;
 import com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes;
 import com.fusionflux.starminer.registry.SimplyStarminerItems;
 import eu.midnightdust.lib.config.MidnightConfig;
@@ -11,9 +9,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -26,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.EnumSet;
 import java.util.Set;
 
-public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity implements ExtendedScreenHandlerFactory {
+public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity {
     @MidnightConfig.Entry(min = -342, max = 342)
     private double startX = -100;
 
@@ -124,36 +122,6 @@ public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity imp
         return invertGravity;
     }
 
-    @Override
-    public void readNbt(NbtCompound nbt) {
-        OptionsListData.read(nbt, this);
-    }
-
-    @Override
-    protected void writeNbt(NbtCompound nbt) {
-        OptionsListData.write(nbt, this);
-    }
-
-    @Override
-    public Text getDisplayName() {
-        return Text.translatable(getCachedState().getBlock().getTranslationKey());
-    }
-
-    @Nullable
-    @Override
-    public ScreenHandler createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new OptionsListScreenHandler(i, pos);
-    }
-
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
-    }
-
-    @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return toNbt();
-    }
 
     @Nullable
     @Override
