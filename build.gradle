@@ -88,10 +88,6 @@ dependencies {
 	include("com.github.LlamaLad7:MixinExtras:0.2.0-beta.4")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.2.0-beta.4")
 
-	modRuntimeOnly ("supercoder79:databreaker:0.2.10") {
-		exclude module: "fabric-loader"
-	}
-
 	include modImplementation("maven.modrinth:midnightlib:1.4.1-quilt")
 }
 

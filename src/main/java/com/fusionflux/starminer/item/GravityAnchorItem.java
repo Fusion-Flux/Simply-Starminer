@@ -28,10 +28,6 @@ public class GravityAnchorItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if (world.isClient) {
-            return TypedActionResult.pass(player.getStackInHand(hand));
-        }
-
         if (!player.isSneaking()) {
             isStrong = !isStrong;
             if (isStrong) {
