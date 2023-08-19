@@ -2,9 +2,7 @@ package com.fusionflux.starminer.item;
 
 import com.fusionflux.gravity_api.api.GravityChangerAPI;
 import com.fusionflux.gravity_api.util.Gravity;
-import com.fusionflux.starminer.client.CoreGravityVerifier;
 import com.fusionflux.starminer.client.GravityAnchorVerifier;
-import com.fusionflux.starminer.client.GravityAnchorVerifierStrong;
 import com.fusionflux.starminer.client.GravityVerifier;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
@@ -55,24 +53,12 @@ public class GravityAnchorItem extends Item {
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (isOn) {
-            PacketByteBuf infoSt = GravityAnchorVerifierStrong.packInfo(entity.getBlockPos());
-            PacketByteBuf infoWe = GravityAnchorVerifier.packInfo(entity.getBlockPos());
-            if (entity.getWorld().isClient && entity instanceof PlayerEntity) {
-                if (isStrong) {
-                    GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, GravityAnchorVerifierStrong.newFieldGravity(gravityDirection), GravityAnchorVerifierStrong.FIELD_GRAVITY_SOURCE, infoSt);
-                } else {
-                    GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, GravityAnchorVerifier.newFieldGravity(gravityDirection), GravityAnchorVerifier.FIELD_GRAVITY_SOURCE, infoWe);
-                }
-            } else {
-                if (!(entity instanceof PlayerEntity) && !world.isClient) {
-                    if (isStrong) {
-                        GravityChangerAPI.addGravity(entity, new Gravity(gravityDirection, 99, 2, "gravity_anchor"));
-                    } else {
-                        GravityChangerAPI.addGravity(entity, new Gravity(gravityDirection, 0, 2, "gravity_anchor"));
-                    }
-                }
+            int priority = isStrong ? 99 : 0;
+            if (world.isClient && entity instanceof PlayerEntity) {
+                GravityChangerAPI.addGravityClient((ClientPlayerEntity) entity, GravityAnchorVerifier.newFieldGravity(gravityDirection, priority), GravityAnchorVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier.packInfo(entity.getBlockPos()));
+            } else if (!(entity instanceof PlayerEntity) && !world.isClient) {
+                GravityChangerAPI.addGravity(entity, new Gravity(gravityDirection, priority, 2, "gravity_anchor"));
             }
-
         }
     }
 }

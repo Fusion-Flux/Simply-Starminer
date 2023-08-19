@@ -1,32 +1,23 @@
 package com.fusionflux.starminer;
 
-import com.fusionflux.gravity_api.item.ModItems;
 import com.fusionflux.gravity_api.util.GravityChannel;
-import com.fusionflux.starminer.client.CoreGravityVerifier;
-import com.fusionflux.starminer.client.GravityAnchorVerifier;
-import com.fusionflux.starminer.client.GravityAnchorVerifierStrong;
-import com.fusionflux.starminer.client.GravityVerifier;
+import com.fusionflux.starminer.client.*;
 import com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes;
 import com.fusionflux.starminer.registry.SimplyStarminerBlocks;
 import com.fusionflux.starminer.registry.SimplyStarminerItems;
 import com.mojang.logging.LogUtils;
-import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.poi.PointOfInterestType;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
-import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 import org.quiltmc.qsl.poi.api.PointOfInterestHelper;
 import org.slf4j.Logger;
 
@@ -72,7 +63,6 @@ public class SimplyStarminer implements ModInitializer {
         GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(CoreGravityVerifier.FIELD_GRAVITY_SOURCE, CoreGravityVerifier::check);
         GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(GravityAnchorVerifier.FIELD_GRAVITY_SOURCE, GravityAnchorVerifier::check);
 
-        GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(GravityAnchorVerifierStrong.FIELD_GRAVITY_SOURCE, GravityAnchorVerifierStrong::check);
         Registry.register(Registries.ITEM_GROUP, new Identifier("simply_starminer", "general"), STARMINER_GROUP);
         MidnightConfig.init(MOD_ID, SimplyStarminerConfig.class);
     }
