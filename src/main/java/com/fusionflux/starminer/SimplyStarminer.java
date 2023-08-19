@@ -3,6 +3,8 @@ package com.fusionflux.starminer;
 import com.fusionflux.gravity_api.item.ModItems;
 import com.fusionflux.gravity_api.util.GravityChannel;
 import com.fusionflux.starminer.client.CoreGravityVerifier;
+import com.fusionflux.starminer.client.GravityAnchorVerifier;
+import com.fusionflux.starminer.client.GravityAnchorVerifierStrong;
 import com.fusionflux.starminer.client.GravityVerifier;
 import com.fusionflux.starminer.registry.SimplyStarminerBlockEntityTypes;
 import com.fusionflux.starminer.registry.SimplyStarminerBlocks;
@@ -68,6 +70,9 @@ public class SimplyStarminer implements ModInitializer {
 
         GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(GravityVerifier.FIELD_GRAVITY_SOURCE, GravityVerifier::check);
         GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(CoreGravityVerifier.FIELD_GRAVITY_SOURCE, CoreGravityVerifier::check);
+        GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(GravityAnchorVerifier.FIELD_GRAVITY_SOURCE, GravityAnchorVerifier::check);
+
+        GravityChannel.UPDATE_GRAVITY.getVerifierRegistry().register(GravityAnchorVerifierStrong.FIELD_GRAVITY_SOURCE, GravityAnchorVerifierStrong::check);
         Registry.register(Registries.ITEM_GROUP, new Identifier("simply_starminer", "general"), STARMINER_GROUP);
         MidnightConfig.init(MOD_ID, SimplyStarminerConfig.class);
     }
