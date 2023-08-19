@@ -53,7 +53,9 @@ public abstract class FallingBlockEntityMixin extends Entity {
         )
     )
     private BlockPos relativeToGravity(BlockPos instance) {
-        return instance.offset(GeneralUtil.getGravityForBlockPos((ServerWorld)getWorld(), instance));
+        if(getWorld() instanceof ServerWorld)
+            return instance.offset(GeneralUtil.getGravityForBlockPos((ServerWorld)getWorld(), instance));
+        return instance.down();
     }
 
     @Override

@@ -26,22 +26,22 @@ import java.util.Set;
 
 public class CreativeStarCoreBlockEntity extends AbstractStarCoreBlockEntity {
     @MidnightConfig.Entry(min = -342, max = 342)
-    private double startX = -100;
+    private double startX = -10;
 
     @MidnightConfig.Entry(min = -342, max = 342)
-    private double startY = -100;
+    private double startY = -10;
 
     @MidnightConfig.Entry(min = -342, max = 342)
-    private double startZ = -100;
+    private double startZ = -10;
 
     @MidnightConfig.Entry(min = -342, max = 342)
-    private double endX = 100;
+    private double endX = 10;
 
     @MidnightConfig.Entry(min = -342, max = 342)
-    private double endY = 100;
+    private double endY = 10;
 
     @MidnightConfig.Entry(min = -342, max = 342)
-    private double endZ = 100;
+    private double endZ = 10;
 
     @MidnightConfig.Entry
     private boolean enabledDown = true;
